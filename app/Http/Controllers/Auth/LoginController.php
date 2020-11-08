@@ -11,17 +11,34 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('clients')->attempt($credentials)) {
-            Auth::guard('clients')->loginUsingId(1);
+
+        /* We have multiple users(clients and providers ) tables or models you should configure multiple
+        sources which represent each model / table. These sources may then
+        be assigned to any extra authentication guards you have defined.
+
+        guard authenticate the specific user so that if you use guard('client') the methods/and  will be
+        work on the database of this client
+
+        ->for this functionilities a I have modify auth.php which is in the configuration folder so
+        that these guard are available
+
+
+        attempt check in the records whether there are the input(email and password)
+        */
+
+        if (Auth::guard('client')->attempt($credentials)) {
+            Auth::guard('client')->loginUsingId(1);
             return redirect('welcome');
         }
-        else if (Auth::guard('providers')->attempt($credentials)) {
-            Auth::guard('providers')->loginUsingId(1);
-            return "Meine Geschäftsseite";
+        else if (Auth::guard('provider')->attempt($credentials)) {
+            Auth::guard('provider')->loginUsingId(1);
+            return redirect('/Geschäft_einrichten');
         }
         else{
             $email=$request->input("email");

@@ -46,7 +46,21 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-    ],
+        //********* changed  **********
+        'client' =>[
+
+            'driver' => 'session',
+            'provider' => 'clients'],
+
+        'provider' =>[
+
+            'driver' => 'session',
+            'provider' => 'providers'
+        ],
+
+        ],
+
+    //********* end  **********
 
     /*
     |--------------------------------------------------------------------------
@@ -71,12 +85,18 @@ return [
             'model' => App\Models\Client::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
+        //********* changed  **********
+         'clients' => [
+             'driver' => 'eloquent',
+             'model' => App\Models\Client::class,
+         ],
 
+        'providers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Provider::class,
+        ],
+    ],
+//********* end *************
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

@@ -24,7 +24,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 
 })  ->name('welcome')
-    ->middleware('auth');  //-> now you can use the /welcome onyl if the user is authenticated
+    ->middleware('auth:client');  //-> now you can use the /welcome onyl if the user is authenticated
 
 
 
@@ -49,10 +49,18 @@ Route::get('flights', function () {
     // Only authenticated users may enter...
 })->middleware('auth');
 */
-//'protectedPage' is the name of this Middleware set in Kernel
-Route::group(['middleware' =>['protectedPage']],function (){
-    //here you can set the pages which has to be in the
-    //middleware group so the age check will be set for this
-    //site
-    Route::view("home2","group_middleware/home2");
+//'auth:client' is the name of this Middleware set in Kernel
+Route::group(['middleware' =>['auth:client']],function (){
+  //******* Here only Routes for Providers   ***********
+    Route::view('/Geschäft_einrichten','account/providerBusiness')->name('Business_view');
+
+
 });
+
+Route::group(['middleware' =>['auth:client']],function (){
+    //******* Here only Routes for Clients  ***********
+
+
+
+});
+

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
+
 class RegisterController extends Controller
 {
 
@@ -35,13 +36,16 @@ class RegisterController extends Controller
             return redirect('login')->withErrors($validator, 'fromRegister');
         }
 
-        if ($request->get('rolle') == 'kunde')
+        if ($request->get('rolle') == 'kunde') {
             $creator->createClient($request->all());
-            else
+            Auth::guard()->loginUsingId(1, true);
+        }
+        else {
             $creator->createProvider($request->all());
-
+            Auth::guard('provider')->loginUsingId(1, true);
+        }
         // Login and "remember" the given user...
-        Auth::loginUsingId(1, true);
+
 
         return redirect("login"); // The user is logged in...
 

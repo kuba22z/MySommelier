@@ -12,6 +12,7 @@ class Provider extends Authenticatable
     use HasFactory, Notifiable;
 
     // public $table='users';
+    protected $guard = 'provider';
 
     /**
      * The attributes that are mass assignable.
