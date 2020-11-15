@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClientsFailedJobsTable extends Migration
 {
+    // optional wird noch nicht benutzt
     /**
      * Run the migrations.
      *

@@ -15,7 +15,7 @@ class CreateCaptchaImagesTable extends Migration
     {
         Schema::create('captchaImages', function (Blueprint $table) {
            $table->id();
-            $table->string('image');
+            $table->string('image',50);
             $table->string('result');
         });
     }

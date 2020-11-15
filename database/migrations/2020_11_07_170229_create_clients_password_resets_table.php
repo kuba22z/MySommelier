@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClientsPasswordResetsTable extends Migration
 {
+
+    // optional wird noch nicht benutzt
     /**
      * Run the migrations.
      *
