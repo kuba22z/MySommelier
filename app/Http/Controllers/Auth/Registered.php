@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\Client;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -11,6 +11,8 @@ use Illuminate\Contracts\Auth\Factory;
 class Registered extends Client
 {
     use SerializesModels;
+
+    //wird noch nicht benutzt, kann aber später hilfreich sein
 
     /**
      * The authenticated user.

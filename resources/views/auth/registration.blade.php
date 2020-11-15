@@ -77,7 +77,7 @@
 
 </head>
 <body>
-
+<!-- Button trigger modal -->
 <?php // window.location.pathname = 'login' leitet auf dei seite "login" weiter ?>
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
     <img src="storage/usericon.png">
@@ -93,8 +93,6 @@
             history.pushState({}, null, "/");
         })
     </script>
-
-
 
 
     <div class="modal-dialog modal-dialog-centered">

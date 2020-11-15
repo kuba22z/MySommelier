@@ -32,6 +32,7 @@
 <body>
 
 </body>
+<!-- Button trigger modal -->
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
     <img src="storage/usericon.png">
 </a>

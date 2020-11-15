@@ -11,7 +11,8 @@ class Provider extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // public $table='users';
+    // public $table='provider';
+    // optional: to secure that this Model corresponds to table: provider
     protected $guard = 'provider';
 
     /**
