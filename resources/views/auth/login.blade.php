@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"></script>
+
     <style>
         .modal-title {
             margin-left: auto;
@@ -27,6 +28,7 @@
         }
 
         #anmelden {
+
             width: 130px;
             margin: 0 auto;
             display: block;
@@ -46,32 +48,46 @@
 </head>
 <body>
 
+<!-- Button trigger modal -->
+<a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
+    <img src="storage/usericon.png">
+</a>
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <script>
+
+        //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
+        $('#exampleModal').on('hide.bs.modal', function (e) {
+            //Ändert die aktuelle URL ohne die Seite neuzuladen
+            history.pushState({}, null, "/");
+        })
+    </script>
+
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" disabled class="close" data-dismiss="modal" aria-label="Close">
+                    <!--   <span aria-hidden="true">&times;</span>  optional close button-->
                 </button>
             </div>
             <div class="modal-body">
 
                 <form method="POST" action={{route('login')}}>
+
                     @csrf
-                    @if($errors->fromRegister->any() )
+                    @if($errors->fromRegister->any() || session('Registered')===false)
                         <span class="error" style="color: red">Fehler bei der Registrierung. Bitte versuchen Sie es erneut.</span>
                         <br>
-
-                    @elseif (\Illuminate\Support\Facades\Auth::check())
-                        <span style="color: green">Ihr Konto wurde erfolgreich erstellt</span><br>
-
-                    @elseif(session('NotRegistered')===true && !(\Illuminate\Support\Facades\Auth::check()))
+                    @elseif(session('LoggedIn')===false)
                         <span class="error" style="color: red">Die Email und/oder das Passwort
                                 stimmen nicht. Bitte überprüfen Sie Ihre Eingaben</span><br>
+                    @elseif (session('Registered')===true)
+                        <span style="color: green">Ihr Konto wurde erfolgreich erstellt</span><br>
                     @endif
-
 
                     <br><br>
                     <div class="form-group">
@@ -85,12 +101,12 @@
                             {{session("password")}}>
 
                     </div>
-                    @if(session('NotRegistered')===true && !(\Illuminate\Support\Facades\Auth::check()))
+                    @if(session('LoggedIn')===false)
                         <a href="/passwort/reset" id="PwV"> Passwort vergessen?</a><br>
                     @endif
                     <br><br><br>
                     <button type="submit" class="btn btn-primary" id="anmelden">Anmelden</button>
-                    <div class="register"><a href="/registration">Neues Konto erstellen</a></div>
+                    <div class="register"><a href="registration">Neues Konto erstellen</a></div>
                 </form>
 
 
@@ -99,16 +115,15 @@
     </div>
 </div>
 
-
 </body>
 </html>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
-<!--wenn es Fehler gab bleibt der popup offen -->
 
-<script>  $("#exampleModal").modal('show');</script>
+<script>
+    //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
+    if (window.location.pathname === '/login') {
+        $('#exampleModal').modal('show');
+    }
+</script>
 
 
 <!-- Modal
@@ -134,3 +149,10 @@
 
 
 <span style="color: green">Sie wurden erfolgreich eingeloggt</span><br>
+
+
+// Simulate a mouse click:
+window.location.href = "http://www.w3schools.com";
+
+// Simulate an HTTP redirect:
+window.location.replace("http://www.w3schools.com");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Provider;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,14 +21,13 @@ class CreateNewUser extends Controller
      */
     public function createProvider(array $input)
     {
-        return DB::transaction(function () use ($input) {
-            return tap(Provider::create([
-                'email' => $input['email'],
-                'password' => Hash::make($input['password'],[MHASH_SHA224]),
-                'timestamps' => time(),
+        return Provider::create([
+            'email' => $input['email'],
+            'password' => Hash::make($input['password'],[MHASH_SHA224]),
+            'timestamps' => time(),
 
-            ]));
-        });
+        ]);
+
     }
     public function createClient(array $input)
     {
@@ -45,14 +45,17 @@ class CreateNewUser extends Controller
             'rememberToken' => $input['token'],
             'timestamps'=> time(),
         ]);*/
-        return DB::transaction(function () use ($input) {
-            return tap(Client::create([
-                'email' => $input['email'],
-                'password' => Hash::make($input['password'],[MHASH_SHA224]),
-                'timestamps' => time(),
 
-            ]));
-        });
+
+
+
+        return Client::create([
+            'email' => $input['email'],
+            'password' => Hash::make($input['password'],[MHASH_SHA224]),
+            'timestamps' => time(),
+
+        ]);
+
     }
 
 

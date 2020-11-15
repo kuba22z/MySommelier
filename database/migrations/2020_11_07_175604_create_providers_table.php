@@ -21,10 +21,12 @@ class CreateProvidersTable extends Migration
             $table->text('openingHours')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->string('email')->unique();
             //nullable set the default as NULL
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
             $table->rememberToken();
             $table->timestamps();
         });

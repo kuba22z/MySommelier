@@ -41,7 +41,7 @@
 
         #labelRolle {
             position: relative;
-            left: 16px;
+            left: 50px;
         }
 
         #rolle {
@@ -53,15 +53,17 @@
         }
 
         #chaptcha {
-            width: 160px;
+            width: 80px;
             margin: 0 auto;
             display: block;
-            position: relative;
-            left: 4px;
+            position: absolute;
+            right: 50%;
         }
 
         #result {
-            width: 70px;
+            position: absolute;
+            right: 35%;
+            width: 60px;
         }
 
         #back, #register {
@@ -76,14 +78,31 @@
 </head>
 <body>
 
+<?php // window.location.pathname = 'login' leitet auf dei seite "login" weiter ?>
+<a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
+    <img src="storage/usericon.png">
+</a>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <script>
+        //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
+        $('#exampleModal').on('hide.bs.modal', function (e) {
+
+            //Ändert die URL ohne die Seite neuzuladen
+            history.pushState({}, null, "/");
+        })
+    </script>
+
+
+
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrieren</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" disabled class="close" data-dismiss="modal" aria-label="Close">
+                    <!--   <span aria-hidden="true">&times;</span>  optional close button-->
                 </button>
             </div>
             <div class="modal-body">
@@ -117,14 +136,25 @@
                             </select>
                         </div>
 
+                        <br>
+
+                        <?php
+                        //Datensatz mit einem zufälligen Bild aus der Datenbank holen
+                        $row = \Illuminate\Support\Facades\DB::table('captchaImages')->find(rand(1, 20));?>
+
                     </div>
                     <div class="d-flex flex-row bd-highlight mb-3">
-                        <?php $a=rand(1,20);  $b=rand(1,20);  $result=$a+$b; ?>
-                            <input type="hidden" name="chaptchaResult" value="<?php echo $result?>" >
-                        <div class="p-2 bd-highlight" id="chaptcha"><?php echo $a." + ".$b." ="?>
-                            <input type="number" id="result" name="result" width=3>
-                        </div>
+                        <input type="hidden" name="captchaResult" value="<?php echo $row->result?>">
+                        <img src="<?php echo $row->image ?>" class="img-fluid" id="chaptcha"
+                             alt="Fehler beim laden des Captchas" height="80px" width="80px">
+                        <input type="number" id="result" name="result" width=3>
+
                     </div>
+                    <br>
+
+                    <?php /* durch eine Konfiguration in filesystems wird an der Postion storage/app/public/captchas nach dem Bild geschaut
+         nach der Änderung der filesystems datei muss php artisan storage:link ausgeführt werden*/ ?>
+
                     <button type="submit" class="btn btn-primary" id="register">Registrieren</button>
                     <br>
                     <a href="/login" class="btn btn-primary" role="button" id="back">Zurück</a>
@@ -134,11 +164,16 @@
         </div>
     </div>
 </div>
-
-
 </body>
 
-<script>  $("#exampleModal").modal('show');</script>
+
+<script>
+    //Prüft ob die URL /registration ist. Wenn ja wird das Modal gezeigt
+    if (window.location.pathname === '/registration') {
+        $('#exampleModal').modal('show');
+    }
+</script>
+
 
 <?php /*
 <span style="color: red">@error('password'){{$message}}@enderror</span>

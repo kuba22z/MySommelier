@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,15 +28,14 @@ class LoginController extends Controller
         that these guard are available
 
 
-        attempt check in the records whether there are the input(email and password)
+        attempt schaut ob es die Email und Password in einem Datensatz gibt und wenn ja wird dieser User als guard('client') eingeloggt
         */
 
         if (Auth::guard('client')->attempt($credentials)) {
-            Auth::guard('client')->loginUsingId(1);
+
             return redirect('welcome');
         }
         else if (Auth::guard('provider')->attempt($credentials)) {
-            Auth::guard('provider')->loginUsingId(1);
             return redirect('/Geschäft_einrichten');
         }
         else{
@@ -45,11 +43,21 @@ class LoginController extends Controller
             $password=$request->input("password");
             $request->session()->flash("email",$email);
             $request->session()->flash("password",$password);
-            $request->session()->flash('NotRegistered',true);
+            $request->session()->flash('LoggedIn',false);
             return redirect('login');
         }
 
     }
+    public function logout()
+    {
+
+        Auth::guard("provider")->logout();
+        Auth::guard("client")->logout();
+        Auth::logout();
+        return redirect("welcome");
+    }
+
+
 
 
     public function login2(Request $req)
