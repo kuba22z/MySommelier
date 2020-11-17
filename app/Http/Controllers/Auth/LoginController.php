@@ -30,16 +30,16 @@ class LoginController extends Controller
 
         if (Auth::guard('client')->attempt($credentials)) {
 
-            return redirect('welcome');
+            return redirect(route('welcome'));
         } else if (Auth::guard('provider')->attempt($credentials)) {
-            return redirect('/Geschäft_einrichten');
+            return redirect(route('business_view'));
         } else {
             $email = $request->input("email");
             $password = $request->input("password");
             $request->session()->flash("email", $email);
             $request->session()->flash("password", $password);
             $request->session()->flash('LoggedIn', false);
-            return redirect('login');
+            return redirect(route('login_view'));
         }
 
     }
@@ -51,7 +51,7 @@ class LoginController extends Controller
         Auth::guard("provider")->logout();
         Auth::guard("client")->logout();
         Auth::logout();
-        return redirect("welcome");
+        return redirect(route("welcome"));
     }
 
 }

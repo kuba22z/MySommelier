@@ -33,7 +33,7 @@ class RegisterController extends Controller
 
         if ($validator->fails() || $captchaResult != (integer)$request->get('result')) {
             $request->session()->flash('Registered', false);
-            return redirect('login')->withErrors($validator, 'fromRegister');
+            return redirect(route('login'))->withErrors($validator, 'fromRegister');
         }
 
         if ($request->get('rolle') == 'kunde') {
@@ -47,7 +47,7 @@ class RegisterController extends Controller
 
         $request->session()->flash('Registered', true);
 
-        return redirect("login");
+        return redirect(route("login_view"));
 
     }
 

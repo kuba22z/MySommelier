@@ -18,7 +18,7 @@
 
     <style>
 
-        .modal-title {
+        h1{
             margin-left: auto;
         }
 
@@ -32,7 +32,7 @@
             float: right;
         }
 
-        #email, #password, #password2 {
+        #email, #adresse, #webseite {
             width: 180px;
         }
 
@@ -42,10 +42,9 @@
 
 </head>
         <body>
+        <h1>Mein Geschäft</h1>>
 
-
-
-        <form method="POST" action={{route('register')}}>
+        <form method="POST" action=>
 
             <div class="form-group">
                 <label for="email" class="labelInput">Name:</label>
@@ -54,13 +53,13 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="labelInput">Adresse:</label>
-                <input type="password" class="form-control" id="password" name="password" value=>
+                <label for="adresse" class="labelInput">Adresse:</label>
+                <input type="text" class="form-control" id="adresse" name="adresse" value=>
 
             </div>
             <div class="form-group">
-                <label for="password2" class="labelInput">Webseite:</label>
-                <input type="password" class="form-control" id="password2" name="password_confirmation" value=>
+                <label for="webseite" class="labelInput">Webseite:</label>
+                <input type="text" class="form-control" id="webseite" name="webseite" value=>
             </div>
 
             <br>

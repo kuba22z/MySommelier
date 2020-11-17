@@ -16,11 +16,12 @@ class CreateProvidersTable extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->string('name',100)->nullable();
+            $table->date('birthDate')->nullable();
             $table->string('address',100)->nullable();
             $table->string('website',100)->nullable();
             $table->string('openingHours',100)->nullable();
             $table->string('phoneNumber',20)->nullable();
-            $table->text('description')->nullable();
+            $table->string('description',500)->nullable();
             $table->string('image',50)->nullable();
             $table->string('email',100)->unique();
             //nullable set the default as NULL

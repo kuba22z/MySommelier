@@ -30,21 +30,27 @@ Route::group(['middleware' =>['guests']],function () {      //redirection -> /we
     Route::view('/passwort/reset', 'auth/pswreset')->name('pswreset_view');
 
     Route::view('/registration', 'auth/registration')->name('registration_view');
-    Route::post('/registration', [RegisterController::class, 'store'])->name('register');
+    Route::post('/registration', [RegisterController::class, 'store'])->name('register');  //redirection ->login
 
 });
+
+//logout kann nur von einem eingeloggten Nutzer ausgeführt werden
+Route::get('/logout',[LoginController::class,'logout'])->name('logout')->middleware("auth.all");
 
 //'auth' is the name of this Middleware set in Kernel and 'provider' is the guard
 Route::group(['middleware' =>['auth:provider']],function (){   //redirection -> /welcome in Middleware Authenticate
   //******* Here only Routes for Providers   ***********
-    Route::get('/logout',[LoginController::class,'logout'])->name('logout');  // redirection -> /welcome
-    Route::view('/Geschaeft/einrichten','account/providerBusiness')->name('Business_view');
+    Route::view('/Anbieter/Geschaeft/einrichten','account/providerBusiness')->name('business_view');
+    Route::view('/Anbieter/Konto','account/providerAccount')->name('provider_account_view');
+
 });
+
 
 //'auth' is the name of this Middleware set in Kernel and 'client' is the guard
 Route::group(['middleware' =>['auth:client']],function (){  //redirection -> /welcome in Middleware Authenticate
     //******* Here only Routes for Clients  ***********
-    Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+    Route::view('/Kunde/Konto','account/clientAccount')->name('client_account_view');
+
 });
 
 /*
