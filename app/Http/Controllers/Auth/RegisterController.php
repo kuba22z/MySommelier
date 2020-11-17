@@ -27,7 +27,9 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        $captchaResult = (integer)Crypt::decrypt($request->get("captchaResult"));
+        //den vorher zufällig generierten Captcha aus der Datenbank holen
+        $row=\Illuminate\Support\Facades\DB::table('captchaImages')->find($request->get("captchaID"));
+        $captchaResult = (integer)Crypt::decrypt($row->result);
 
         if ($validator->fails() || $captchaResult != (integer)$request->get('result')) {
             $request->session()->flash('Registered', false);

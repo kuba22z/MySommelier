@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -142,7 +142,7 @@
 
                     </div>
                     <div class="d-flex flex-row bd-highlight mb-3">
-                        <input type="hidden" name="captchaResult" value="<?php echo $row->result?>">
+                        <input type="hidden" name="captchaID" value="<?php echo $row->id?>">
                         <img src="<?php echo $row->image ?>" class="img-fluid" id="chaptcha"
                              alt="Fehler beim laden des Captchas" height="80px" width="80px">
                         <input type="number" id="result" name="result" width=3>
@@ -164,7 +164,7 @@
 </div>
 </body>
 
-
+</html>
 <script>
     //Prüft ob die URL /registration ist. Wenn ja wird das Modal gezeigt
     if (window.location.pathname === '/registration') {
@@ -173,7 +173,7 @@
 </script>
 
 
-<?php /*
+<?php /*  optional
 <span style="color: red">@error('password'){{$message}}@enderror</span>
 
 <span style="color: red">@error('email'){{$message}}@enderror</span>

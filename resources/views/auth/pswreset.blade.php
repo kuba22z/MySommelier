@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -31,7 +31,7 @@
 </head>
 <body>
 
-</body>
+
 <!-- Button trigger modal -->
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
     <img src="storage/usericon.png">
@@ -70,7 +70,8 @@
     </div>
 </div>
 
-
+</body>
+</html>
 <script>
     //Prüft ob die URL /passwort/reset ist. Wenn ja wird das Modal gezeigt
     if (window.location.pathname === '/passwort/reset') {
