@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Account\Business;
+use App\Http\Controllers\Auth\Register;
+use App\Http\Controllers\Auth\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,25 +23,28 @@ Route::get('/welcome', function () {
 
 
 
-Route::group(['middleware' =>['guests']],function () {      //redirection -> /welcome in Middleware RedirectifAuthenticated
+Route::group(['middleware' =>['guests']],function () {      //redirection -> /welcome in Middleware RedirectifAuth
     //******* Here only Routes for Guest  ***********
     Route::view('/login', 'auth/login')->name('login_view');
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [Login::class, 'login'])->name('login');
 
-    Route::view('/passwort/reset', 'auth/pswreset')->name('pswreset_view');
+    Route::view('/passwort-reset', 'auth/pswreset')->name('pswreset_view');
 
     Route::view('/registration', 'auth/registration')->name('registration_view');
-    Route::post('/registration', [RegisterController::class, 'store'])->name('register');  //redirection ->login
+    Route::post('/registration', [Register::class, 'store'])->name('register');  //redirection ->login
 
 });
 
-//logout kann nur von einem eingeloggten Nutzer ausgeführt werden
-Route::get('/logout',[LoginController::class,'logout'])->name('logout')->middleware("auth.all");
+//logout kann nur von einem eingeloggten Nutzer(auth.all) ausgeführt werden
+Route::get('/logout',[Login::class,'logout'])->name('logout')
+    ->middleware("auth.all");
 
 //'auth' is the name of this Middleware set in Kernel and 'provider' is the guard
 Route::group(['middleware' =>['auth:provider']],function (){   //redirection -> /welcome in Middleware Authenticate
   //******* Here only Routes for Providers   ***********
     Route::view('/Anbieter/Geschaeft/einrichten','account/providerBusiness')->name('business_view');
+    Route::post('/Anbieter/Geschaeft/einrichten',[Business::class,'store'])->name('save');
+
     Route::view('/Anbieter/Konto','account/providerAccount')->name('provider_account_view');
 
 });

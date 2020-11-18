@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Client;
+use App\Models\Provider;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Factory;
 
-class Registered extends Client
+class Registered extends Provider
 {
     use SerializesModels;
 
@@ -20,6 +21,15 @@ class Registered extends Client
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
     public $user;
+
+    /**
+     * @return Authenticatable
+     */
+    public function getUser(): Authenticatable
+    {
+        return $this->user;
+    }
+
 
     /**
      * Create a new event instance.
@@ -40,7 +50,7 @@ class Registered extends Client
      */
     public function getAuthIdentifierName()
     {
-      return $this->getAuthIdentifierName();
+        return $this->getAuthIdentifierName();
     }
 
     /**
@@ -50,7 +60,7 @@ class Registered extends Client
      */
     public function getAuthIdentifier()
     {
-      return $this->getAuthIdentifier();
+        return $this->getAuthIdentifier();
     }
 
     /**
@@ -60,7 +70,7 @@ class Registered extends Client
      */
     public function getAuthPassword()
     {
-       return $this->getAuthPassword();
+        return $this->getAuthPassword();
     }
 
     /**
@@ -70,7 +80,7 @@ class Registered extends Client
      */
     public function getRememberToken()
     {
-     return $this->getRememberToken();
+        return $this->getRememberToken();
     }
 
     /**
@@ -91,6 +101,8 @@ class Registered extends Client
      */
     public function getRememberTokenName()
     {
-    return $this->getRememberToken();
+        return $this->getRememberToken();
     }
 }
+
+

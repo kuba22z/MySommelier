@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
-class LoginController extends Controller
+class Login extends Controller
 {
 
 

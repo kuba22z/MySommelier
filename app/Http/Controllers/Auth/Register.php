@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
 
-class RegisterController extends Controller
+class Register extends Controller
 {
 
     protected $guard;
@@ -39,9 +39,10 @@ class RegisterController extends Controller
         if ($request->get('rolle') == 'kunde') {
 
             $newClient = $creator->createClient($request->all());  //create a Client and fill a record
-            Auth::guard('client')->login($newClient);  //login newClient a 'client'
+          //  Auth::guard('client')->login($newClient);  //login newClient a 'client'
         } else {
             $newProvider = $creator->createProvider($request->all()); //create a Provider and fill a record
+
             Auth::guard('provider')->login($newProvider); //login newProvider a 'provider'
         }
 

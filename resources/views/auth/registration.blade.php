@@ -155,7 +155,7 @@
 
                     <button type="submit" class="btn btn-primary" id="register">Registrieren</button>
                     <br>
-                    <a href="/login" class="btn btn-primary" role="button" id="back">Zurück</a>
+                    <a href={{route('login_view')}} class="btn btn-primary" role="button" id="back">Zurück</a>
                 </form>
 
             </div>

@@ -74,7 +74,7 @@
 </html>
 <script>
     //Prüft ob die URL /passwort/reset ist. Wenn ja wird das Modal gezeigt
-    if (window.location.pathname === '/passwort/reset') {
+    if (window.location.pathname === '/passwort-reset') {
         $('#exampleModal').modal('show');
     }
 </script>

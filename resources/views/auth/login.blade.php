@@ -102,7 +102,7 @@
 
                     </div>
                     @if(session('LoggedIn')===false)
-                        <a href="/passwort/reset" id="PwV"> Passwort vergessen?</a><br>
+                        <a href={{route('pswreset_view')}} id="PwV"> Passwort vergessen?</a><br>
                     @endif
                     <br><br><br>
                     <button type="submit" class="btn btn-primary" id="anmelden">Anmelden</button>

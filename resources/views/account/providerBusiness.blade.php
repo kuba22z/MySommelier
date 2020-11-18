@@ -25,15 +25,16 @@
         .labelInput {
             float: left;
             position: relative;
-            right: 7px;
+
         }
 
-        .form-group {
-            float: right;
-        }
 
-        #email, #adresse, #webseite {
+        #name, #address, #website {
             width: 180px;
+        }
+        #openHours,#telNr,#description{
+        width: 250px;
+
         }
 
 
@@ -42,32 +43,48 @@
 
 </head>
         <body>
-        <h1>Mein Geschäft</h1>>
+        <h1>Mein Geschäft</h1>
 
-        <form method="POST" action=>
-
+        <form method="POST" action={{route('save')}}>
+        @csrf
             <div class="form-group">
-                <label for="email" class="labelInput">Name:</label>
-                <input type="text" class="form-control" id="email" name="email" value=>
+                <label for="name" class="labelInput">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value=>
 
             </div>
 
             <div class="form-group">
-                <label for="adresse" class="labelInput">Adresse:</label>
-                <input type="text" class="form-control" id="adresse" name="adresse" value=>
+                <label for="address" class="labelInput">Adresse:</label>
+                <input type="text" class="form-control" id="address" name="address" value=>
 
             </div>
             <div class="form-group">
-                <label for="webseite" class="labelInput">Webseite:</label>
-                <input type="text" class="form-control" id="webseite" name="webseite" value=>
+                <label for="website" class="labelInput">Webseite:</label>
+                <input type="text" class="form-control" id="website" name="website" value=>
             </div>
+
+            <div class="form-group">
+                <label for="openHours" class="labelInput">Öffnungszeiten</label>
+                <input type="text" class="form-control" id="openHours" name="openHours" value=>
+            </div>
+
+            <div class="form-group">
+                <label for="telNr" class="labelInput">Telefonnummer:</label>
+                <input type="text" class="form-control" id="telNr" name="telNr" value=>
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="labelInput">Beschreibung:</label>
+                <input type="text" class="form-control" id="description" name="description" value=>
+            </div>
+
 
             <br>
 
 
-            <button type="submit" class="btn btn-primary" id="register">Registrieren</button>
+            <button type="submit" class="btn btn-primary" id="register">Speichern</button>
             <br>
-            <a href="/login" class="btn btn-primary" role="button" id="back">Zurück</a>
+            <a href={{route('login_view')}} class="btn btn-primary" role="button" id="back">Abbrechen</a>
 
 
         </form>
