@@ -34,7 +34,7 @@
 
 <!-- Button trigger modal -->
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
-    <img src="storage/usericon.png">
+    <img src="storage/usericon.png" width="100px">
 </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -29,6 +29,7 @@ class Provider extends Authenticatable
         'description',
         'email',
         'password',
+        'image'
     ];
 
     /**

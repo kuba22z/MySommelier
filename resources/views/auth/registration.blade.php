@@ -80,7 +80,9 @@
 <!-- Button trigger modal -->
 <?php // window.location.pathname = 'login' leitet auf dei seite "login" weiter ?>
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
-    <img src="storage/usericon.png">
+    <img src="storage/usericon.png" width="100px">
+    <?php //alle Bilder werden in public/storage gepeichert durch eine Konfiguration in filesystems.php Datei
+    // fängt der Pfad direkt im public Ordner an              ?>
 </a>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,29 +135,20 @@
                                 <option value="anbieter" name="anbieter">Anbieter</option>
                             </select>
                         </div>
-
                         <br>
-
-                        <?php
-                        //Datensatz mit einem zufälligen Bild aus der Datenbank holen
-                        $row = \Illuminate\Support\Facades\DB::table('captchaImages')->find(rand(1, 20));?>
-
                     </div>
                     <div class="d-flex flex-row bd-highlight mb-3">
-                        <input type="hidden" name="captchaID" value="<?php echo $row->id?>">
-                        <img src="<?php echo $row->image ?>" class="img-fluid" id="chaptcha"
+                        <input type="hidden" name="captchaID" value="{{$row->id}}">
+                        <img src="{{$row->image}}" class="img-fluid" id="chaptcha"
                              alt="Fehler beim laden des Captchas" height="80px" width="80px">
                         <input type="number" id="result" name="result" width=3>
 
                     </div>
                     <br>
 
-                    <?php /* durch eine Konfiguration in filesystems wird an der Postion storage/app/public/captchas nach dem Bild geschaut
-         nach der Änderung der filesystems datei muss php artisan storage:link ausgeführt werden*/ ?>
-
                     <button type="submit" class="btn btn-primary" id="register">Registrieren</button>
                     <br>
-                    <a href={{route('login_view')}} class="btn btn-primary" role="button" id="back">Zurück</a>
+                    <a href="{{route('login_view')}}" class="btn btn-primary" role="button" id="back">Zurück</a>
                 </form>
 
             </div>

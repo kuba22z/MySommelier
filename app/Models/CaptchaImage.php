@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CaptchaImage extends Model
 {
     use HasFactory;
-
+    public $table='captchaImages';
 
     /**
      * The attributes that are mass assignable.

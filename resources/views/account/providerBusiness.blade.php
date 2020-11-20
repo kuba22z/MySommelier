@@ -1,4 +1,4 @@
-<?php  ?>
+<?php ?>
     <!doctype html>
 <html lang="de">
 <head>
@@ -18,7 +18,7 @@
 
     <style>
 
-        h1{
+        h1 {
             margin-left: auto;
         }
 
@@ -32,8 +32,9 @@
         #name, #address, #website {
             width: 180px;
         }
-        #openHours,#telNr,#description{
-        width: 250px;
+
+        #openHours, #telNr, #description {
+            width: 250px;
 
         }
 
@@ -42,52 +43,65 @@
 
 
 </head>
-        <body>
-        <h1>Mein Geschäft</h1>
+<body>
+<h1>Mein Geschäft</h1>
 
-        <form method="POST" action={{route('save')}}>
-        @csrf
-            <div class="form-group">
-                <label for="name" class="labelInput">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value=>
+<form method="POST" action="{{route('save')}}" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
+        <label for="name" class="labelInput">Name:</label>
+        <input type="text"required class="form-control" id="name" name="name" value=>
+        <span style="color: red">@error('name'){{$message}}@enderror</span>
+    </div>
 
-            </div>
+    <div class="form-group">
+        <label for="address" class="labelInput">Adresse:</label>
+        <input type="text" required class="form-control" id="address" name="address" value=>
+        <span style="color: red">@error('address'){{$message}}@enderror</span>
+    </div>
+    <div class="form-group">
+        <label for="website" class="labelInput">Webseite:</label>
+        <input type="url" class="form-control" id="website" name="website" value=>
+        <span style="color: red">@error('website'){{$message}}@enderror</span>
+    </div>
 
-            <div class="form-group">
-                <label for="address" class="labelInput">Adresse:</label>
-                <input type="text" class="form-control" id="address" name="address" value=>
+    <div class="form-group">
+        <label for="openHours" class="labelInput">Öffnungszeiten</label>
+        <input type="text" class="form-control" id="openHours" name="openHours" value=>
+        <span style="color: red">@error('openHours'){{$message}}@enderror</span>
+    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="website" class="labelInput">Webseite:</label>
-                <input type="text" class="form-control" id="website" name="website" value=>
-            </div>
+    <div class="form-group">
+        <label for="telNr" class="labelInput">Telefonnummer:</label>
+        <input type="number" class="form-control" id="telNr" name="telNr" value=>
+        <span style="color: red">@error('telNr'){{$message}}@enderror</span>
+    </div>
 
-            <div class="form-group">
-                <label for="openHours" class="labelInput">Öffnungszeiten</label>
-                <input type="text" class="form-control" id="openHours" name="openHours" value=>
-            </div>
+    <div class="form-group">
+        <label for="description" class="labelInput">Beschreibung:</label>
+        <input type="text" class="form-control" id="description" name="description" value=>
+        <span style="color: red">@error('description'){{$message}}@enderror</span>
+    </div>
 
-            <div class="form-group">
-                <label for="telNr" class="labelInput">Telefonnummer:</label>
-                <input type="text" class="form-control" id="telNr" name="telNr" value=>
-            </div>
-
-            <div class="form-group">
-                <label for="description" class="labelInput">Beschreibung:</label>
-                <input type="text" class="form-control" id="description" name="description" value=>
-            </div>
-
-
-            <br>
+    <div class="form-group">
+        <img src="{{ asset($provider->image)}}" width="200px" onerror=this.src="{{asset('storage/providersImage/uploadImage.png')}}" >
+        <input type="file" class="form-control" id="image" name="image"  value="on">
+        <span style="color: red">@error('image'){{$message}}@enderror</span>
+    </div>
 
 
-            <button type="submit" class="btn btn-primary" id="register">Speichern</button>
-            <br>
-            <a href={{route('login_view')}} class="btn btn-primary" role="button" id="back">Abbrechen</a>
+    <br>
 
 
-        </form>
+    <button type="submit" class="btn btn-primary" id="register">Speichern</button>
+    <br>
+    <a href="{{route('business_view')}}" class="btn btn-primary" role="button" id="back">Abbrechen</a>
 
-        </body>
+
+</form>
+
+</body>
 </html>
+
+
+

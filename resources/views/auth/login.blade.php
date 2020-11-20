@@ -50,7 +50,7 @@
 
 <!-- Button trigger modal -->
 <a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
-    <img src="storage/usericon.png">
+    <img src="storage/usericon.png" width="100px">
 </a>
 
 
@@ -106,7 +106,7 @@
                     @endif
                     <br><br><br>
                     <button type="submit" class="btn btn-primary" id="anmelden">Anmelden</button>
-                    <div class="register"><a href="registration">Neues Konto erstellen</a></div>
+                    <div class="register"><a href="{{route('registration_view')}}">Neues Konto erstellen</a></div>
                 </form>
 
 
