@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            CaptchaSeeder::class,
+          //  CaptchaSeeder::class, das noch nicht
             DrinkSeeder::class,
         ]);
     }
