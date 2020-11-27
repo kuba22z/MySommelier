@@ -13,7 +13,7 @@ class CreateCaptchaImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('captchaImages', function (Blueprint $table) {
+        Schema::create('captcha_images', function (Blueprint $table) {
            $table->id();
             $table->string('image',50);
             $table->string('result');
@@ -27,6 +27,6 @@ class CreateCaptchaImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('captchaImages');
+        Schema::dropIfExists('captcha_images');
     }
 }

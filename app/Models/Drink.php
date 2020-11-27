@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CaptchaImage extends Model
+class Drink extends Model
 {
     use HasFactory;
-    public $table='captcha_images';
+    public $table='drinks';
 
     /**
      * The attributes that are mass assignable.
@@ -16,17 +16,13 @@ class CaptchaImage extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
-        'result'
+        'name',
+        'ean',
+        'product',
+        'type',
+        'origin',
+        'alcoholContent',
+        'description',
+        'image'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'result'
-    ];
-
 }

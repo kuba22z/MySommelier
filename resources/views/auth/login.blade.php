@@ -49,7 +49,7 @@
 <body>
 
 <!-- Button trigger modal -->
-<a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
+<a data-toggle="modal" data-target="#exampleModal" onclick="{{route('login_view')}}">
     <img src="storage/usericon.png" width="100px">
 </a>
 

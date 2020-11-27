@@ -1,8 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\Account\AddDrink;
 use App\Http\Controllers\Account\Business;
-use App\Http\Controllers\Auth\Register;
+use App\Http\Controllers\Account\SearchDrink;
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Register;
+use App\Models\Drink;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +26,6 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 //-> now you can use the /welcome onyl if the user is authenticated
-
 
 Route::group(['middleware' => ['guests']], function () {      //redirection -> /welcome in Middleware RedirectifAuth
     //******* Here only Routes for Guest  ***********
@@ -50,12 +53,23 @@ Route::group(['middleware' => ['auth:provider']], function () {   //redirection 
     //******* Here only Routes for Providers   ***********
     Route::get('/Anbieter/Geschaeft/einrichten', function () {
         $provider = Auth::user();
-        return view('account.providerBusiness')->with('provider', $provider);
-
-    })->name('business_view');
+        return view('providerAccount.business')->with('provider', $provider);})->name('business_view');
     Route::post('/Anbieter/Geschaeft/einrichten', [Business::class, 'store'])->name('save');
 
-    Route::view('/Anbieter/Konto', 'account/providerAccount')->name('provider_account_view');
+    Route::get('/Anbieter/Geschaeft/Getraenk/suchen', function () {
+        $provider = Auth::user();
+        return view('providerAccount/business')->with('provider', $provider);})->name('search_drink_view');
+    Route::get('/Anbieter/Geschaeft/Getraenk/suchen', [SearchDrink::class, 'search'])->name('search_drink');
+
+    Route::post('/Anbieter/Geschaeft/Getraenk/suchen', [AddDrink::class, 'add'])->name('addDrink');
+
+
+    Route::get('/Anbieter/Geschaeft/Getraenk/EANscan', function () {
+        $provider = Auth::user();
+        return view('providerAccount/business')->with('provider', $provider);})->name('EANscan_view');
+
+
+    Route::view('/Anbieter/Konto', 'providerAccount/accountP')->name('provider_account_view');
 
 });
 
@@ -63,7 +77,7 @@ Route::group(['middleware' => ['auth:provider']], function () {   //redirection 
 //'auth' is the name of this Middleware set in Kernel and 'client' is the guard
 Route::group(['middleware' => ['auth:client']], function () {  //redirection -> /welcome in Middleware Authenticate
     //******* Here only Routes for Clients  ***********
-    Route::view('/Kunde/Konto', 'account/clientAccount')->name('client_account_view');
+    Route::view('/Kunde/Konto', 'clientAccount/accountC')->name('client_account_view');
 
 });
 

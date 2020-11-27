@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,20 +28,19 @@ class Business extends Controller
         // Get the currently authenticated user...
         $provider = Auth::user();
 
-
         $rules = [
-            'name' => 'filled | string | max:40',
-            'address' => 'string | max:100| filled',
+            'name' => ' string | max:40 | required',
+            'address' => 'string | max:100 | required',
             'website' => 'url | nullable',
-            'openHours' => 'string |max:400 |nullable',
-            'telNr' => 'integer | max:20 | nullable',
+            'openHours' => 'string |max:400 | nullable ',
+            'telNr' => 'digits_between:6,20 | nullable',
             'description' => 'string | max:500 | nullable',
-            'image' => 'image | nullable'
+            'image' => 'image | file | nullable'
         ];
 
         //Validator schickt die Daten direkt zurück zu der Geschaefteseite wenn es Fehler gab
         Validator::make($req->all(), $rules)->validate();
-$imagePath=null;
+        $imagePath=null;
         //saves the file/image in laravel storage folder and returns
         // /providersImage/{name of this file} as path
         if(!empty($req->file('image'))) {
@@ -61,11 +61,11 @@ $imagePath=null;
             'description' => $req->get('description'),
             'image' => $imagePath
         ];
-
+        //filtert alle Einträge im Array die null sind damit dann
+        // nix in der Db überschrieben wird
+        $changes=array_filter($changes);
 
         $provider->update($changes);
-        $req->session()->put('imagePath', $imagePath);
-
         return redirect()->back();
     }
 

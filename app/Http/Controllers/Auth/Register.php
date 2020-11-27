@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,7 +18,7 @@ class Register extends Controller
     {
         //regeln für die Validation
         $rules = [
-            //allready registered provider cant register as client and vice versa
+            //already registered provider cant register as client and vice versa
             'email' => 'email | string | required | max:255 | unique:App\Models\Client,email|
                unique:App\Models\Provider,email',// connect to the table and look only in the email column
             'password' => 'required | string | confirmed',
@@ -28,7 +27,7 @@ class Register extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         //den vorher zufällig generierten Captcha aus der Datenbank holen
-        $row=\Illuminate\Support\Facades\DB::table('captchaImages')->find($request->get("captchaID"));
+        $row=\Illuminate\Support\Facades\DB::table('captcha_images')->find($request->get("captchaID"));
         $captchaResult = (integer)Crypt::decrypt($row->result);
 
         if ($validator->fails() || $captchaResult != (integer)$request->get('result')) {

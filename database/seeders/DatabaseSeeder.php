@@ -7,12 +7,17 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     *  By default, the php artisan db:seed command runs the DatabaseSeeder
+     *
+     * Dieser DatabaseSeeder startet alle Seeder
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\Client::factory(10)->create();
+        $this->call([
+            CaptchaSeeder::class,
+            DrinkSeeder::class,
+        ]);
     }
 }

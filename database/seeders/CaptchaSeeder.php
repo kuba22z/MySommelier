@@ -17,7 +17,7 @@ class CaptchaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('captchaImages')->insert([
+        DB::table('captcha_images')->insert([
              ['image' => "storage/captchas/add1.png", "result" => Crypt::encrypt(29)],
             ['image' => "storage/captchas/add2.png", "result" =>  Crypt::encrypt(28)],
             ['image' => "storage/captchas/add3.png", "result" => Crypt::encrypt(20)],

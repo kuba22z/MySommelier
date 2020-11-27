@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientsTable extends Migration
+class CreateSubstancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('substances', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->nullable();
-            $table->date('birthDate')->nullable();
-            $table->string('email',100)->unique();
-            //nullable set the default as NULL
-            $table->string('password');
+            $table->string('name',20);
+            $table->boolean('isAllergen');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('substances');
     }
 }
