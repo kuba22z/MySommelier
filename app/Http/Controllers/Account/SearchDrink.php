@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Drink;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class SearchDrink extends Controller
@@ -19,7 +18,7 @@ class SearchDrink extends Controller
         //return DB::table('drinks')->where('name', '=',$req->get('name'))->get();
     //$row=DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$req->get('name'))->get();
         $drink =new Drink();
-        return view('providerAccount.addDrink',['row'=>$drink->getLikeName($req->get('name'))]);
+        return view('providerAccount.addDrink',['row'=> $drink->getLikeName($req->get('name'))]);
     }
 }
 /*

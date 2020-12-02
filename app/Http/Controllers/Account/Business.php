@@ -40,13 +40,10 @@ class Business extends Controller
         // nix in der Db überschrieben wird
         $changes=array_filter($changes);
 
-
         $provider = Auth::user();
         // Get the currently authenticated user...
         //alternative Get the currently authenticated user...
         //  $provider=Provider::find(Auth::id());
-        //$provider->name; to get the current name in the database
-
 
         $provider->update($changes);
         return redirect()->back();
