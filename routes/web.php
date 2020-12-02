@@ -6,10 +6,9 @@ use App\Http\Controllers\Account\Business;
 use App\Http\Controllers\Account\SearchDrink;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
-use App\Models\Drink;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Models\CaptchaImage;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +35,9 @@ Route::group(['middleware' => ['guests']], function () {      //redirection -> /
 
     Route::get('/registration', function (){
         //Datensatz mit einem zufälligen Bild aus der Datenbank holen
-        $row = DB::table('captchaImages')->find(rand(1, 20));
-        return view('auth.registration')->with('row',$row);
+      $image=  new CaptchaImage();
+        $randImage = $image->getCaptchaImage(rand(1,20));
+        return view('auth.registration')->with('randImage',$randImage);
     })->name('registration_view');
 
     Route::post('/registration', [Register::class, 'store'])->name('register');  //redirection ->login

@@ -79,7 +79,7 @@
                 <form method="POST" action={{route('login')}}>
 
                     @csrf
-                    @if($errors->fromRegister->any() || session('Registered')===false)
+                    @if(session('Registered')===false)
                         <span class="error" style="color: red">Fehler bei der Registrierung. Bitte versuchen Sie es erneut.</span>
                         <br>
                     @elseif(session('LoggedIn')===false)

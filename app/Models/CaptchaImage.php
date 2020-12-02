@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class CaptchaImage extends Model
 {
@@ -28,5 +29,10 @@ class CaptchaImage extends Model
     protected $hidden = [
         'result'
     ];
+
+public function getCaptchaImage(int $captchaID)
+{
+    return DB::table('captcha_images')->find($captchaID);
+}
 
 }

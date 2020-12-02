@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Drink extends Model
 {
@@ -25,4 +27,8 @@ class Drink extends Model
         'description',
         'image'
     ];
+public function getLikeName(String $name)
+{
+    return DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$name)->get();
+}
 }

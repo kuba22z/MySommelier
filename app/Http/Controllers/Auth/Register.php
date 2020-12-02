@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\CaptchaImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
@@ -16,24 +17,8 @@ class Register extends Controller
     public function store(Request $request,
                           CreateNewUser $creator)
     {
-        //regeln für die Validation
-        $rules = [
-            //already registered provider cant register as client and vice versa
-            'email' => 'email | string | required | max:255 | unique:App\Models\Client,email|
-               unique:App\Models\Provider,email',// connect to the table and look only in the email column
-            'password' => 'required | string | confirmed',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        //den vorher zufällig generierten Captcha aus der Datenbank holen
-        $row=\Illuminate\Support\Facades\DB::table('captcha_images')->find($request->get("captchaID"));
-        $captchaResult = (integer)Crypt::decrypt($row->result);
-
-        if ($validator->fails() || $captchaResult != (integer)$request->get('result')) {
-            $request->session()->flash('Registered', false);
-            return redirect(route('login'))->withErrors($validator, 'fromRegister');
-        }
+        if(!$this->validator($request))
+            return redirect(route('login'));
 
         if ($request->get('rolle') == 'kunde') {
 
@@ -49,5 +34,28 @@ class Register extends Controller
         return redirect(route("login_view"));
 
     }
+public static function validator(Request $request)
+{
+    //regeln für die Validation
+    $rules = [
+        //already registered provider cant register as client and vice versa
+        'email' => 'email | string | required | max:255 | unique:App\Models\Client,email|
+               unique:App\Models\Provider,email',// connect to the table and look only in the email column
+        'password' => 'required | string | confirmed',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+    //den vorher zufällig generierten Captcha aus der Datenbank holen
+    $image= new CaptchaImage();
+    $row = $image->getCaptchaImage($request->get("captchaID"));
+    $captchaResult = (integer)Crypt::decrypt($row->result);
+    if ($validator->fails() || $captchaResult != (integer)$request->get('result')) {
+        $request->session()->flash('Registered', false);
+      return false;
+    }
+    return true;
+}
+
 
 }

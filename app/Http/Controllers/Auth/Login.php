@@ -16,8 +16,6 @@ class Login extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
         /* We have multiple users(clients and providers ) tables and models you should configure multiple
         sources which represent each model / table. These sources may then
         be assigned to any extra authentication guards you have defined.
@@ -29,6 +27,8 @@ class Login extends Controller
         that these guards are available
 
         attempt schaut ob es die Email und Password in einem Datensatz gibt und wenn ja wird dieser User als guard('client') eingeloggt */
+
+        $credentials = $request->only('email', 'password');
 
         if (Auth::guard('client')->attempt($credentials)) {
 

@@ -138,8 +138,8 @@
                         <br>
                     </div>
                     <div class="d-flex flex-row bd-highlight mb-3">
-                        <input type="hidden" name="captchaID" value="{{$row->id}}">
-                        <img src="{{$row->image}}" class="img-fluid" id="chaptcha"
+                        <input type="hidden" name="captchaID" value="{{$randImage->id}}">
+                        <img src="{{$randImage->image}}" class="img-fluid" id="chaptcha"
                              alt="Fehler beim laden des Captchas" height="80px" width="80px">
                         <input type="number" id="result" name="result" width=3>
 

@@ -12,14 +12,14 @@ class SearchDrink extends Controller
 {
     public function search(Request $req){
 
-        //to get all drinks of a certain column
-       $row =Drink::all();
-     // 3 Ways how u can get records where the request name contains(is Equal)
+     //  $row =Drink::all();   // nimmt alle Daten von der Tablle drink und speichert es in row
+    //    $row =Drink::all('name');  // wie select name from drinks
+        // Verschieden möglichkeiten um sich einen bestimmten namen aus der Datenbank zu holen
       //  return Drink::where('name', '=', $req->get('name'))->get();
         //return DB::table('drinks')->where('name', '=',$req->get('name'))->get();
-    $row=DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$req->get('name'))->get();
-
-        return view('providerAccount.addDrink',['row'=>$row]);
+    //$row=DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$req->get('name'))->get();
+        $drink =new Drink();
+        return view('providerAccount.addDrink',['row'=>$drink->getLikeName($req->get('name'))]);
     }
 }
 /*
