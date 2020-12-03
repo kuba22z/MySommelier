@@ -137,6 +137,12 @@ return [
     'providers' => [
 
         /*
+         * My Service Providers...
+         */
+        \App\Http\View\HomeServiceProvider::class,
+        \App\Providers\BladeServiceProvider::class,
+
+        /*
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,

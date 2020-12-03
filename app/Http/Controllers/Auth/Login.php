@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 
 class Login extends Controller
@@ -27,9 +26,9 @@ class Login extends Controller
 
         if (Auth::guard('client')->attempt($credentials)) {
 
-            return redirect(route('welcome'));
+            return redirect('/');
         } else if (Auth::guard('provider')->attempt($credentials)) {
-            return redirect(route('business_view'));
+            return redirect()->route('business_view');
         } else {
             $email = $request->input("email");
             $password = $request->input("password");
@@ -37,20 +36,20 @@ class Login extends Controller
             // damit diese Email in der view angezeigt wird
             $request->session()->flash("password", $password);
             $request->session()->flash('LoggedIn', false);
-            return redirect(route('login_view'));
+            return redirect()->route('login_view');
         }
 
     }
 
-    //logout all users
     public function logout()
     {
-        Auth::guard("provider")->logout();
-        Auth::guard("client")->logout();
-        Auth::logout();
-        return redirect(route("welcome"));
-    }
+        if(Auth::guard("client")->check())
+        Auth::guard('client')->logout();
+        elseif(Auth::guard("provider")->check())
+        Auth::guard('provider')->logout();
 
+    return redirect('/');
+    }
 }
 
 

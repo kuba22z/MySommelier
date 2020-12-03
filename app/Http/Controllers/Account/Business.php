@@ -28,7 +28,8 @@ class Business extends Controller
             // man den das public/ in $image_path abschneiden und durch ein storage/ ersetzen
         }
         $changes = [
-            'name' => $req->get('name'),
+            'firstName' => $req->get('firstName'),
+            'secondName' => $req->get('secondName'),
             'address' => $req->get('address'),
             'website' => $req->get('website'),
             'openingHours' => $req->get('openHours'),
@@ -52,7 +53,8 @@ class Business extends Controller
     public function validator(Request $request)
     {
         $rules = [
-            'name' => ' string | max:40 | required',
+            'firstName' => ' string | max:40 | required',
+            'secondName' => ' string | max:40 | required',
             'address' => 'string | max:100 | required',
             'website' => 'url | nullable',
             'openHours' => 'string |max:400 | nullable ',

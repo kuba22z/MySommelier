@@ -18,7 +18,7 @@ class Register extends Controller
                           CreateNewUser $creator)
     {
         if(!$this->validator($request))
-            return redirect(route('login'));
+            return redirect()->route('login_view');
 
         if ($request->get('rolle') == 'kunde') {
 
@@ -30,7 +30,7 @@ class Register extends Controller
 
         $request->session()->flash('Registered', true);
 
-        return redirect(route("login_view"));
+        return redirect()->route('login_view');
 
     }
 public static function validator(Request $request)

@@ -6,9 +6,11 @@ use App\Http\Controllers\Account\Business;
 use App\Http\Controllers\Account\SearchDrink;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
+use App\Models\CaptchaImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\CaptchaImage;
+use App\Http\Controllers\Home\DrinkController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +30,15 @@ Route::get('/welcome', function () {
 
 Route::group(['middleware' => ['guests']], function () {      //redirection -> /welcome in Middleware RedirectifAuth
     //******* Here only Routes for Guest  ***********
-    Route::view('/login', 'auth/login')->name('login_view');
-    Route::post('/login', [Login::class, 'login'])->name('login');
+   Route::view('/login','home.home')->name('login_view');
+   Route::post('/login', [Login::class, 'login'])->name('login');
 
-    Route::view('/passwort-reset', 'auth/pswreset')->name('pswreset_view');
 
-    Route::get('/registration', function (){
-        //Datensatz mit einem zufälligen Bild aus der Datenbank holen
-      $image=  new CaptchaImage();
-        $randImage = $image->getCaptchaImage(rand(1,20));
-        return view('auth.registration')->with('randImage',$randImage);
-    })->name('registration_view');
+    Route::view('/registration','home.home')->name('registration_view');
 
     Route::post('/registration', [Register::class, 'store'])->name('register');  //redirection ->login
 
+    Route::view('/passwort-reset', 'home.home')->name('pswreset_view');
 });
 
 //logout kann nur von einem eingeloggten Nutzer(auth.all) ausgeführt werden
@@ -83,8 +80,25 @@ Route::group(['middleware' => ['auth:client']], function () {  //redirection -> 
 
 });
 
-/*
-Route::get('flights', function () {
-    // Only authenticated users may enter...
-})->middleware('auth');
-*/
+
+Route::view('/','home.home') ;
+
+Route::get('/', [DrinkController::class, 'getDrinkToName']);
+Route::post('/', [DrinkController::class, 'searchButton']);
+
+
+Route::get('/getr_details', [function(){
+    return view('home.getr_details');
+}]);
+
+Route::get('/filter_options', function(){
+    return view('home.filter_options',[]);
+});
+
+Route::get('/anb', function(){
+    return view('home.anbieter_getr_liste',[]);
+});
+
+
+
+

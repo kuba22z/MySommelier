@@ -1,20 +1,5 @@
-<!doctype html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registrieren</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous"></script>
-    <style>
+
+<style>
         .modal-title {
             margin-left: auto;
         }
@@ -29,22 +14,20 @@
             float: right;
         }
 
-        #email, #password, #password2 {
-            width: 180px;
+         #emailr, #passwordr, #password2r {
+            width: 180px ;
         }
 
-        .rolle {
-            width: auto;
-            margin: 0 auto;
-            display: block;
-        }
+
 
         #labelRolle {
+            float: left;
             position: relative;
-            left: 50px;
+            left: 80px;
         }
 
         #rolle {
+
             width: 140px;
             margin: auto;
             display: block;
@@ -62,7 +45,7 @@
 
         #result {
             position: absolute;
-            right: 35%;
+            right: 36%;
             width: 60px;
         }
 
@@ -75,21 +58,16 @@
     </style>
 
 
-</head>
-<body>
 <!-- Button trigger modal -->
-<?php // window.location.pathname = 'login' leitet auf dei seite "login" weiter ?>
-<a data-toggle="modal" data-target="#exampleModal" onclick="window.location.pathname = 'login'">
-    <img src="storage/usericon.png" width="100px">
-    <?php //alle Bilder werden in public/storage gepeichert durch eine Konfiguration in filesystems.php Datei
-    // fängt der Pfad direkt im public Ordner an              ?>
+<a data-toggle="modal" data-target="#registerModal" hidden>
+
 </a>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
 
     <script>
         //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
-        $('#exampleModal').on('hide.bs.modal', function (e) {
+        $('#registerModal').on('hide.bs.modal', function (e) {
 
             //Ändert die URL ohne die Seite neuzuladen
             history.pushState({}, null, "/");
@@ -100,7 +78,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrieren</h5>
+                <h5 class="modal-title" id="registerModalLabel">Registrieren</h5>
                 <button type="button" disabled class="close" data-dismiss="modal" aria-label="Close">
                     <!--   <span aria-hidden="true">&times;</span>  optional close button-->
                 </button>
@@ -110,25 +88,26 @@
                 <form method="POST" action={{route('register')}}>
                     @csrf
                     <div class="form-group">
-                        <label for="email" class="labelInput">E-Mail:</label>
-                        <input type="text" class="form-control" id="email" name="email" value=>
+                        <label for="emailr" class="labelInput">E-Mail:</label>
+                        <input type="text" class="form-control" id="emailr" name="email" >
 
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="labelInput">Passwort:</label>
-                        <input type="password" class="form-control" id="password" name="password" value=>
+                        <label for="passwordr" class="labelInput">Passwort:</label>
+                        <input type="password" class="form-control" id="passwordr" name="password">
 
                     </div>
                     <div class="form-group">
-                        <label for="password2" class="labelInput">Passwort widerholen:</label>
-                        <input type="password" class="form-control" id="password2" name="password_confirmation" value=>
+                        <label for="password2r" class="labelInput">Passwort widerholen:</label>
+                        <input type="password" class="form-control" id="password2r" name="password_confirmation" >
 
                     </div>
+
                     <div class="rolle">
-                        <label class="col-md-7 control-label" for="service_status" id="labelRolle">Bitte wählen Sie Ihre
-                            Rolle
-                            aus:</label>
+
+                        <label  for="rolle" id="labelRolle">Bitte wählen Sie Ihre Rolle aus:</label>
+
                         <div class="col-md-7" id="rolle">
                             <select id="rolle" name="rolle" class="form-control">
                                 <option value="kunde" name="kunde">Kunde</option>
@@ -155,16 +134,14 @@
         </div>
     </div>
 </div>
-</body>
 
-</html>
+
 <script>
     //Prüft ob die URL /registration ist. Wenn ja wird das Modal gezeigt
     if (window.location.pathname === '/registration') {
-        $('#exampleModal').modal('show');
+        $('#registerModal').modal('show');
     }
 </script>
-
 
 <?php /*  optional
 <span style="color: red">@error('password'){{$message}}@enderror</span>

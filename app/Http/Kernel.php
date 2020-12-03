@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class],
-        'guests' => [\App\Http\Middleware\RedirectIfAuth::class]
+        'guests' => [\App\Http\Middleware\RedirectIfAuth::class],
     ];
 
     /**

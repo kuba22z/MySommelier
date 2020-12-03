@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Drink;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class RedirectIfAuth
 
         //Prüfe ob jemand eingeloggt ist wenn ja leite die Seite um
        if (Auth::guard("client")->check() || Auth::guard("provider")->check())
-            return redirect(RouteServiceProvider::HOME);
+            return redirect('/');
 
         return $next($request);
     }
