@@ -11,13 +11,10 @@ class SearchDrink extends Controller
 {
     public function search(Request $req){
 
-        //  $row =Drink::all();   // nimmt alle Daten von der Tablle drink und speichert es in row
-        //    $row =Drink::all('name');  // wie select name from drinks
-        // Verschieden möglichkeiten um sich einen bestimmten namen aus der Datenbank zu holen
-        //  return Drink::where('name', '=', $req->get('name'))->get();
-        //return DB::table('drinks')->where('name', '=',$req->get('name'))->get();
-        //$row=DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$req->get('name'))->get();
+        if(empty($req->get('name')))
+           return view('providerAccount.addDrink',['row'=> []]);
         $drink =new Drink();
+
         return view('providerAccount.addDrink',['row'=> $drink->getLikeName($req->get('name'))]);
     }
 }

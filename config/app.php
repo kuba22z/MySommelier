@@ -139,7 +139,8 @@ return [
         /*
          * My Service Providers...
          */
-        \App\Http\View\HomeServiceProvider::class,
+        \App\Http\View\Composers\ViewServiceProvider::class,
+        \App\Http\View\Composers\HomeServiceProvider::class,
         \App\Providers\BladeServiceProvider::class,
 
         /*

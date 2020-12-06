@@ -19,7 +19,7 @@ class CreateNewUser extends Controller
     {
         return Provider::create([
             'email' => $input['email'],
-            'password' => Hash::make($input['password'],[MHASH_SHA224]),
+            'password' => Hash::make($input['password']),
             'timestamps' => time(),
 
         ]);
@@ -29,7 +29,7 @@ class CreateNewUser extends Controller
     {
         return Client::create([
             'email' => $input['email'],
-            'password' => Hash::make($input['password'],[MHASH_SHA224]),
+            'password' => Hash::make($input['password']),
             'timestamps' => time(),
 
         ]);

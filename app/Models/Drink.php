@@ -25,10 +25,14 @@ class Drink extends Model
         'origin',
         'alcoholContent',
         'description',
-        'image'
+        'image',
     ];
-public function getLikeName(String $name)
+public function getLikeName(String $name): \Illuminate\Support\Collection
 {
-    return DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$name)->get();
+    return DB::table('drinks')->select('id','image','name','type','alcoholContent')->where('name','LIKE',$name)->get();
 }
+
+
+
+
 }

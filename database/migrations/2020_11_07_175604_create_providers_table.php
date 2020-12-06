@@ -15,15 +15,21 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100)->nullable();
+            $table->string('firstName',100)->nullable();
+            $table->string('secondName',100)->nullable();
             $table->date('birthDate')->nullable();
-            $table->string('address',100)->nullable();
+            $table->string('email',100)->unique();
+
+            $table->integer('zip')->nullable();
+            $table->string('city',100)->nullable();
+            $table->string('street',100)->nullable();
+
             $table->string('website',100)->nullable();
             $table->string('openingHours',100)->nullable();
             $table->string('phoneNumber',20)->nullable();
             $table->string('description',500)->nullable();
             $table->string('image')->nullable();
-            $table->string('email',100)->unique();
+
             //nullable set the default as NULL
            // optional $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

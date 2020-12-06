@@ -49,14 +49,14 @@ Route::get('/logout', [Login::class, 'logout'])->name('logout')
 Route::group(['middleware' => ['auth:provider']], function () {   //redirection -> /welcome in Middleware Authenticate
     //******* Here only Routes for Providers   ***********
     Route::get('/Anbieter/Geschaeft/einrichten', function () {
-        $provider = Auth::user();
-        return view('providerAccount.business')->with('provider', $provider);})->name('business_view');
+       // $provider = Auth::user();
+        return view('providerAccount.business');})->name('business_view');
 
     Route::post('/Anbieter/Geschaeft/einrichten', [Business::class, 'store'])->name('save');
 
     Route::get('/Anbieter/Geschaeft/Getraenk/suchen', function () {
-        $provider = Auth::user();
-        return view('providerAccount/business')->with('provider', $provider);})->name('search_drink_view');
+      //  $provider = Auth::user();
+        return view('providerAccount/business');})->name('search_drink_view');
 
     Route::get('/Anbieter/Geschaeft/Getraenk/suchen', [SearchDrink::class, 'search'])->name('search_drink');
 
@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth:provider']], function () {   //redirection 
 
     Route::get('/Anbieter/Geschaeft/Getraenk/EANscan', function () {
         $provider = Auth::user();
-        return view('providerAccount/business')->with('provider', $provider);})->name('EANscan_view');
+        return view('providerAccount/business');})->name('EANscan_view');
 
 
     Route::view('/Anbieter/Konto', 'providerAccount/accountP')->name('provider_account_view');

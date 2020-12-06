@@ -1,6 +1,6 @@
 <!-- @author Leon Straßburger, Serdar Akcay-->
 <!DOCTYPE html>
-<html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,9 +64,7 @@
 </head>
 
 
-<body>
-
-
+<header>
 <nav class="navbar navbar-light">
 
 @guest
@@ -90,15 +88,13 @@
 
             <!-- dropdown menu options -->
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                @auth('provider')
-                    <a href={{route('provider_account_view')}} class="dropdown-item" role="button">Mein Konto</a>
+
+                    <a href=
+                       @auth('provider'){{route('provider_account_view')}} @elseauth('client') {{route('client_account_view')}} @endauth
+                           class="dropdown-item" role="button">Mein Konto</a>
                     <div class="dropdown-divider"></div>
                     <a href={{route('logout')}} class="dropdown-item" role="button">Abmelden</a>
-                @elseauth('client')
-                    <a href={{route('client_account_view')}} class="dropdown-item" role="button">Mein Konto</a>
-                    <div class="dropdown-divider"></div>
-                    <a href={{route('logout')}} class="dropdown-item" role="button">Abmelden</a>
-                @endauth
+
             </div>
 
         </div>
@@ -109,8 +105,6 @@
 
 </nav>
 
-</body>
+</header>
 
-
-</html>
 

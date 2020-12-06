@@ -17,14 +17,14 @@ class Register extends Controller
     public function store(Request $request,
                           CreateNewUser $creator)
     {
-        if(!$this->validator($request))
+        if(!$this->check($request))
             return redirect()->route('login_view');
 
         if ($request->get('rolle') == 'kunde') {
 
-            $newClient = $creator->createClient($request->all());  //create a Client and fill a record
+            $creator->createClient($request->all());  //create a Client and fill a record
         } else {
-            $newProvider = $creator->createProvider($request->all()); //create a Provider and fill a record
+             $creator->createProvider($request->all()); //create a Provider and fill a record
 
         }
 
@@ -33,7 +33,7 @@ class Register extends Controller
         return redirect()->route('login_view');
 
     }
-public static function validator(Request $request)
+public static function check(Request $request): bool
 {
     //regeln für die Validation
     $rules = [
