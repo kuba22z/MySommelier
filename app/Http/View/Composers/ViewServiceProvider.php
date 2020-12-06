@@ -2,6 +2,7 @@
 
 namespace App\Http\View\Composers;
 
+use App\Models\DrinksOffer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,8 +28,10 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('providerAccount.business', function ($view) {
             $provider = Auth::user();
-            $view->with('providerImage', $provider->image);
-
+            $view->with(
+                ['providerImage'=> $provider->image,
+                'offer' =>DrinksOffer::getDrinkOffers($provider->id)]
+            );
         });
 
     }

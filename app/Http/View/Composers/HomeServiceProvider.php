@@ -45,10 +45,6 @@ class HomeServiceProvider extends ServiceProvider
         });
 
     }
-
-/*
-
-*/
 }
 
 

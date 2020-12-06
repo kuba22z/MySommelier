@@ -91,30 +91,25 @@
         <span style="color: red">@error('image'){{$message}}@enderror</span>
     </div>
 
-    @if(!empty(session('drinksOffer')))
-        @foreach(session('drinksOffer') as $key => $row)
-            @foreach($row as $drink_id => $name)
-                {{$name}}
-            @endforeach
+    @foreach($offer as $key => $row)
+        {{$row->name}}
+        <input type="hidden" name="OffersCount" value="{{$loop->count}}">
+        <input class="form-check-input" type="checkbox" value="{{$row->drink_id}}" id="" name="{{$loop->index}}"
+               @if($row->recommended==true) checked @endif >
+        <label class="form-check-label" for="defaultCheck1">
+            Empfohlen
+        </label>
 
-            <input class="form-check-input" type="checkbox" value='true' id="" name="{{$key}}"
-                   @if(!empty(session('recommendedOffer')[$key]))  @if(session('recommendedOffer')[$key]===true) checked @endif @endif>
-            <label class="form-check-label" for="defaultCheck1">
-                Empfohlen
-            </label>
+        <button type="submit" name="removeIt" value="{{$row->drink_id}}">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-x" fill="red"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+        <br>
+@endforeach
 
-                <button type="submit" name="removeIt" value="{{$drink_id}};{{$key}}">
-                    <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-x" fill="red"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </button>
-            <br>
-
-    @endforeach
-
-@endif
 
 <!-- Button trigger modal -->
     <a data-toggle="modal" data-target="#suchenModal"
@@ -152,6 +147,7 @@
         $('#EANscanModal').modal('show');
     }
 </script>
+
 
 
 

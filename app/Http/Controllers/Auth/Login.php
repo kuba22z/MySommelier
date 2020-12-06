@@ -25,10 +25,8 @@ class Login extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('client')->attempt($credentials)) {
-            $request->session()->regenerate();
             return redirect('/');
         } else if (Auth::guard('provider')->attempt($credentials)) {
-            $request->session()->regenerate();
             return redirect()->route('business_view');
         } else {
             $email = $request->input("email");

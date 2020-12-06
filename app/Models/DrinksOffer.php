@@ -31,17 +31,24 @@ class DrinksOffer extends Model
             ]
         );
     }
-    public static function updateRecommended(int $provider_id,array $notRecommendedIds,array $recommendedIds)
+    public static function updateRecommended(int $provider_id,array $recommendedIds)
     {
         DB::beginTransaction();
-        if($notRecommendedIds!=[])
-            DB::table('drinks_offers')->where('provider_id','=',$provider_id)->whereIn('drink_id',$notRecommendedIds)->update(['recommended'=>false]);
-        if($recommendedIds!=[])
+            DB::table('drinks_offers')->where('provider_id','=',$provider_id)->whereNotIn('drink_id',$recommendedIds)->update(['recommended'=>false]);
             DB::table('drinks_offers')->where('provider_id','=',$provider_id)->whereIn('drink_id',$recommendedIds)->update(['recommended'=>true]);
         DB::commit();
     }
-    public static function removeOffer(int $provider_id,int $drink_id){
+    public static function removeOffer(int $provider_id,int $drink_id)
+    {
         DB::table('drinks_offers')->where('provider_id', '=', $provider_id)->where('drink_id', '=', $drink_id)->delete();
+    }
+    public static function getDrinkOffers(int $provider_id): \Illuminate\Support\Collection
+    {
+
+       return DB::table('drinks_offers')->select('name','recommended','drink_id')
+            ->where('provider_id','=',$provider_id)
+            ->leftJoin('drinks', 'drinks.id', '=', 'drinks_offers.drink_id')
+            ->get();
     }
 
 }
