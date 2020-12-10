@@ -31,6 +31,8 @@ class Provider extends Authenticatable
         'city',
         'street',
         'website',
+        'businessName',
+        'birthDate',
         "openingHours",
         'phoneNumber',
         'description',

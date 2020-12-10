@@ -37,8 +37,7 @@ class Business extends Controller
             // man den das public/ in $image_path abschneiden und durch ein storage/ ersetzen
         }
         $changes = [
-            'firstName' => $req->get('firstName'),
-            'secondName' => $req->get('secondName'),
+            'businessName' => $req->get('name'),
 
             'zip' => $req->get('zip'),
             'city' => $req->get('city'),
@@ -71,20 +70,14 @@ class Business extends Controller
 
         $rules = [
 
-            'firstName' => [
+            'name' => [
                 Rule::requiredIf(function () {
                     $r = Auth::user();
-                    return empty($r->firstName);
+                    return empty($r->businessName);
                 }),
                 // Zahlen und Sonder Zeichen wie (,) sind nicht erlaubt sind
                 'nullable', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ ,.'-]+$)/i"],
 
-            'secondName' => [
-                Rule::requiredIf(function () {
-                    $r = Auth::user();
-                    return empty($r->secondName);
-                }),
-                'nullable', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ ,.'-]+$)/i"],
 
             'city' => [
                 Rule::requiredIf(function () {

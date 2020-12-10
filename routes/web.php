@@ -1,12 +1,12 @@
 <?php
 
 
+use App\Http\Controllers\Account\Account;
 use App\Http\Controllers\Account\AddDrink;
 use App\Http\Controllers\Account\Business;
 use App\Http\Controllers\Account\SearchDrink;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Register;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\DrinkController;
 
@@ -43,23 +43,29 @@ Route::get('/logout', [Login::class, 'logout'])->name('logout')
 //'auth' is the name of this Middleware set in Kernel and 'provider' is the guard
 Route::group(['middleware' => ['auth:provider']], function () {   //redirection -> /welcome in Middleware Authenticate
     //******* Here only Routes for Providers   ***********
-    Route::view('/Anbieter/Geschaeft/einrichten','providerAccount.business')->name('business_view');
+    Route::view('/Anbieter/Geschaeft/einrichten','provider.business')->name('business_view');
 
-    Route::post('/Anbieter/Geschaeft/einrichten', [Business::class, 'store'])->name('save');
+    Route::post('/Anbieter/Geschaeft/einrichten', [Business::class, 'store'])->name('business_save');
 
-    Route::view('/Anbieter/Geschaeft/Getraenk/suchen', 'providerAccount/business')->name('search_drink_view');
+    Route::view('/Anbieter/Geschaeft/Getraenk/suchen', 'provider.business')->name('search_drink_view');
 
     Route::get('/Anbieter/Geschaeft/Getraenk/suchen', [SearchDrink::class, 'search'])->name('search_drink');
 
     Route::post('/Anbieter/Geschaeft/Getraenk/suchen', [AddDrink::class, 'add'])->name('addDrink');
 
-    Route::view('/Anbieter/Geschaeft/Getraenk/erstellen', 'providerAccount.addDrink')->name('create_drink_view');
+    Route::view('/Anbieter/Geschaeft/Getraenk/erstellen', 'provider.addDrink')->name('create_drink_view');
 
 
-    Route::view('/Anbieter/Geschaeft/Getraenk/EANscan','providerAccount/business')->name('EANscan_view');
+    Route::view('/Anbieter/Geschaeft/Getraenk/EANscan','provider.business')->name('EANscan_view');
 
 
-    Route::view('/Anbieter/Konto', 'providerAccount/accountP')->name('provider_account_view');
+    Route::view('/Anbieter/Konto', 'provider.accountP')->name('provider_account_view');
+
+    Route::post('/Anbieter/Konto', [Account::class,'change'])->name('provider_account_change');
+
+    Route::view('/Anbieter/Konto/Passwort/aendern', 'provider.accountP')->name('provider_changePsw_view');
+
+    Route::post('/Anbieter/Konto/Passwort/aendern', [Account::class,'changePsw'])->name('provider_changePsw');
 
 });
 
@@ -67,7 +73,13 @@ Route::group(['middleware' => ['auth:provider']], function () {   //redirection 
 //'auth' is the name of this Middleware set in Kernel and 'client' is the guard
 Route::group(['middleware' => ['auth:client']], function () {  //redirection -> /welcome in Middleware Authenticate
     //******* Here only Routes for Clients  ***********
-    Route::view('/Kunde/Konto', 'clientAccount/accountC')->name('client_account_view');
+    Route::view('/Kunde/Konto', 'client/accountC')->name('client_account_view');
+
+    Route::post('/Kunde/Konto', [Account::class,'change'])->name('client_account_change');
+
+    Route::view('/Kunde/Konto/Passwort/aendern', 'client.accountC')->name('client_changePsw_view');
+
+    Route::post('/Kunde/Konto/Passwort/aendern', [Account::class,'changePsw'])->name('client_changePsw');
 
 });
 

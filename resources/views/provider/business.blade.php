@@ -13,7 +13,7 @@
     }
 
 
-    #firstName, #secondName, #zip, #street, #city, #website {
+ #name, #zip, #street, #city, #website {
         width: 180px;
     }
 
@@ -28,19 +28,13 @@
 <body>
 <h1>Mein Geschäft</h1>
 
-<form method="POST" action="{{route('save')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('business_save')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label for="firstName" class="labelInput">Vorname:</label>
-        <input type="text" class="form-control" id="firstName" name="firstName">
-        <span style="color: red">@error('firstName'){{$message}}@enderror</span>
+        <label for="name" class="labelInput">Name:</label>
+        <input type="text" class="form-control" id="name" name="name">
+        <span style="color: red">@error('name'){{$message}}@enderror</span>
     </div>
-    <div class="form-group">
-        <label for="secondName" class="labelInput">Nachname:</label>
-        <input type="text" class="form-control" id="secondName" name="secondName">
-        <span style="color: red">@error('secondName'){{$message}}@enderror</span>
-    </div>
-
 
     <div class="form-group">
         <label for="zip" class="labelInput">PLZ:</label>
@@ -112,8 +106,7 @@
 
 
 <!-- Button trigger modal -->
-    <a data-toggle="modal" data-target="#suchenModal"
-       onclick="history.pushState({}, null, '/Anbieter/Geschaeft/Getraenk/suchen')">
+    <a data-toggle="modal" data-target="#suchenModal">
         <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -130,17 +123,13 @@
 
 </form>
 
-@include('providerAccount.searchDrinkModal')
-@include('providerAccount.EANscanModal')
+@include('provider.searchDrink')
+@include('provider.EANscan')
 
 
 </body>
 
 <script>
-    //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
-    if (window.location.pathname === '/Anbieter/Geschaeft/Getraenk/suchen') {
-        $('#suchenModal').modal('show');
-    }
 
     //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
     if (window.location.pathname === '/Anbieter/Geschaeft/Getraenk/EANscan') {

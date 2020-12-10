@@ -49,7 +49,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <h5 class="modal-title d" id="loginModalLabel">Login</h5>
                 <button type="button" disabled class="close" data-dismiss="modal" aria-label="Close">
                     <!--   <span aria-hidden="true">&times;</span>  optional close button-->
                 </button>
@@ -93,8 +93,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>
     //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt

@@ -26,11 +26,22 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('providerAccount.business', function ($view) {
+        View::composer('provider.business', function ($view) {
             $provider = Auth::user();
             $view->with(
                 ['providerImage'=> $provider->image,
                 'offer' =>DrinksOffer::getDrinkOffers($provider->id)]
+            );
+        });
+
+        View::composer(['provider.accountP','client.accountC'], function ($view) {
+            $user = Auth::user();
+            $view->with(
+                ['firstName'=> $user->firstName,
+                    'secondName' =>$user->secondName,
+                              'email' =>$user->email,
+                  'birthDate' =>$user->birthDate
+                ]
             );
         });
 

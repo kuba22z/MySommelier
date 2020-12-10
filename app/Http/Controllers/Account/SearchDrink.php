@@ -12,10 +12,10 @@ class SearchDrink extends Controller
     public function search(Request $req){
 
         if(empty($req->get('name')))
-           return view('providerAccount.addDrink',['row'=> []]);
+           return view('provider.addDrink',['row'=> []]);
         $drink =new Drink();
 
-        return view('providerAccount.addDrink',['row'=> $drink->getLikeName($req->get('name'))]);
+        return view('provider.addDrink',['row'=> $drink->getLikeName($req->get('name'))]);
     }
 }
 /*

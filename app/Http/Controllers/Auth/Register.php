@@ -38,7 +38,7 @@ public static function check(Request $request): bool
     //regeln für die Validation
     $rules = [
         //already registered provider cant register as client and vice versa
-        'email' => 'email | string | required | max:255 | unique:App\Models\Client,email|
+        'email' => 'email | string | required | max:100 | unique:App\Models\Client,email|
                unique:App\Models\Provider,email',// connect to the table and look only in the email column
         'password' => 'required | string | confirmed',
     ];

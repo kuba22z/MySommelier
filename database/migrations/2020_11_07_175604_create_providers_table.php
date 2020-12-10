@@ -20,6 +20,7 @@ class CreateProvidersTable extends Migration
             $table->date('birthDate')->nullable();
             $table->string('email',100)->unique();
 
+            $table->string('businessName',100)->nullable();
             $table->integer('zip')->nullable();
             $table->string('city',100)->nullable();
             $table->string('street',100)->nullable();

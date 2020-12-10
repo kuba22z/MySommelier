@@ -1,61 +1,69 @@
-
 <style>
-        .modal-title {
-            margin-left: auto;
-        }
+    .modal-title {
+        margin-left: auto;
+    }
 
-        .labelInput {
-            float: left;
-            position: relative;
-            right: 7px;
-        }
+    .labelInput {
+        float: left;
+        position: relative;
+        right: 7px;
+    }
 
-        .form-group {
-            float: right;
-        }
+    .textgroup {
+        float: right;
+        position: relative;
+        left: 40px;
+    }
 
-         #emailr, #passwordr, #password2r {
-            width: 180px ;
-        }
+    #emailr, #passwordr, #password2r {
 
+        width: 150px;
+    }
 
+    .group {
+        width: 90%;
+    }
 
-        #labelRolle {
-            float: left;
-            position: relative;
-            left: 80px;
-        }
+    .pass2Textgroup {
+        width: 311px;
+    }
 
-        #rolle {
+    #labelRolle {
+        float: left;
+        position: relative;
+        left: 80px;
+    }
 
-            width: 140px;
-            margin: auto;
-            display: block;
-            position: relative;
-            right: 8px;
-        }
+    #rolle {
 
-        #chaptcha {
-            width: 80px;
-            margin: 0 auto;
-            display: block;
-            position: absolute;
-            right: 50%;
-        }
+        width: 140px;
+        margin: auto;
+        display: block;
+        position: relative;
+        right: 8px;
+    }
 
-        #result {
-            position: absolute;
-            right: 36%;
-            width: 60px;
-        }
+    #chaptcha {
+        width: 80px;
+        margin: 0 auto;
+        display: block;
+        position: absolute;
+        right: 50%;
+    }
 
-        #back, #register {
-            width: 130px;
-            margin: 0 auto;
-            display: block;
-        }
+    #result {
+        position: absolute;
+        right: 36%;
+        width: 60px;
+    }
 
-    </style>
+    #back, #register {
+        width: 130px;
+        margin: 0 auto;
+        display: block;
+    }
+
+</style>
 
 
 <!-- Button trigger modal -->
@@ -87,26 +95,30 @@
 
                 <form method="POST" action={{route('register')}}>
                     @csrf
-                    <div class="form-group">
-                        <label for="emailr" class="labelInput">E-Mail:</label>
-                        <input type="text" class="form-control" id="emailr" name="email" >
 
-                    </div>
+                    <div class="group">
+                        <div class="form-group textgroup">
+                            <label for="emailr" class="labelInput">E-Mail:</label>
+                            <input type="text" class="form-control" id="emailr" name="email">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="passwordr" class="labelInput">Passwort:</label>
-                        <input type="password" class="form-control" id="passwordr" name="password">
+                        <div class="form-group textgroup ">
+                            <label for="passwordr" class="labelInput">Passwort:</label>
+                            <input type="password" class="form-control" id="passwordr" name="password">
 
-                    </div>
-                    <div class="form-group">
-                        <label for="password2r" class="labelInput">Passwort widerholen:</label>
-                        <input type="password" class="form-control" id="password2r" name="password_confirmation" >
+                        </div>
+                        <div class="form-group textgroup pass2Textgroup">
 
+                            <label for="password2r" class="labelInput">Passwort wiederholen:</label>
+                            <input type="password" class="form-control-static" id="password2r"
+                                   name="password_confirmation">
+
+                        </div>
                     </div>
 
                     <div class="rolle">
 
-                        <label  for="rolle" id="labelRolle">Bitte wählen Sie Ihre Rolle aus:</label>
+                        <label for="rolle" id="labelRolle">Bitte wählen Sie Ihre Rolle aus:</label>
 
                         <div class="col-md-7" id="rolle">
                             <select id="rolle" name="rolle" class="form-control">
