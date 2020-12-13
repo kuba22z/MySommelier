@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DrinksOffer extends Model
@@ -33,10 +34,10 @@ class DrinksOffer extends Model
     }
     public static function updateRecommended(int $provider_id,array $recommendedIds)
     {
-        DB::beginTransaction();
-            DB::table('drinks_offers')->where('provider_id','=',$provider_id)->whereNotIn('drink_id',$recommendedIds)->update(['recommended'=>false]);
-            DB::table('drinks_offers')->where('provider_id','=',$provider_id)->whereIn('drink_id',$recommendedIds)->update(['recommended'=>true]);
-        DB::commit();
+        DB::transaction(function () use ($provider_id,$recommendedIds) {
+            DB::table('drinks_offers')->where('provider_id', '=', $provider_id)->whereNotIn('drink_id', $recommendedIds)->update(['recommended' => false]);
+            DB::table('drinks_offers')->where('provider_id', '=', $provider_id)->whereIn('drink_id', $recommendedIds)->update(['recommended' => true]);
+        });
     }
     public static function removeOffer(int $provider_id,int $drink_id)
     {

@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class Substance extends Model
+class DrinksSubstance extends Model
 {
     use HasFactory;
-    public $table='substances';
+    public $table='drinks_substances';
 
     /**
      * The attributes that are mass assignable.
@@ -17,14 +16,10 @@ class Substance extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'isAllergen'
-
+        'drink_id',
+        'substance_id'
     ];
+    public $incrementing = false;
 
-    public static function getIDbyName($name){
-
-        return DB::table('substances')->select('id')->where('name','=',$name)->get();
-    }
 
 }

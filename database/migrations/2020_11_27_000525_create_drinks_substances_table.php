@@ -11,6 +11,7 @@ class CreateDrinksSubstancesTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('drinks_substances', function (Blueprint $table) {
@@ -21,6 +22,9 @@ class CreateDrinksSubstancesTable extends Migration
             $table->timestamps();
         });
     }
+
+    protected $primaryKey = ['substance_id', 'drink_id'];
+    public $incrementing = false;
 
     /**
      * Reverse the migrations.

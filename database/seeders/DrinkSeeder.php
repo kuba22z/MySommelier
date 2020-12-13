@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Drink;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,6 @@ class DrinkSeeder extends Seeder
                 'type' =>   'Pils',
                 'origin' =>  'Bremen, Deutschland',
                 'alcoholContent' => 4.1,
-                'description' => "schmeckt",
                 'image'=>"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bitburger_Premium_Beer.JPG/245px-Bitburger_Premium_Beer.JPG"
             ],
             [
@@ -31,7 +31,6 @@ class DrinkSeeder extends Seeder
                 'type' => 'Weissbier',
                 'origin' => 'Hamburg, Deutschland',
                 'alcoholContent' => 5.4,
-                'description' => "sehr gut",
                 'image' => "https://imgix.ranker.com/node_img/13/253101/original/weihenstephaner-hefe-weissbier-beers-photo-1?fit=crop&fm=pjpg&q=60&w=144&h=144&dpr=2"
             ],
             [
@@ -41,7 +40,6 @@ class DrinkSeeder extends Seeder
                 'type' => 'Weissbier',
                 'origin' => 'Stuttgart, Deutschland',
                 'alcoholContent' => 5.4,
-                'description' => "toll",
                 'image' => "https://imgix.ranker.com/node_img/13/253576/original/weihenstephaner-kristall-weissbier-beers-photo-1?fit=crop&fm=pjpg&q=60&w=144&h=144&dpr=2"
             ],
             [
@@ -51,7 +49,6 @@ class DrinkSeeder extends Seeder
                 'type' => 'Pils',
                 'origin' => 'München, Deutschland',
                 'alcoholContent' => 4.9,
-                'description' => "wow",
                 'image' => "https://imgix.ranker.com/node_img/13/253737/original/paulaner-original-m-nchner-premium-lager-beers-photo-1?fit=crop&fm=pjpg&q=60&w=144&h=144&dpr=2"
             ],
             [
@@ -61,7 +58,6 @@ class DrinkSeeder extends Seeder
                 'type' => 'Weissbier',
                 'origin' => 'Köln, Deutschland',
                 'alcoholContent' => 5.0,
-                'description' => "unglaublich",
                 'image' => "https://imgix.ranker.com/node_img/3162/63234595/original/franziskaner-hefe-weisse-hell-beers-photo-1?fit=crop&fm=pjpg&q=60&w=144&h=144&dpr=2"
             ],
             [
@@ -71,10 +67,108 @@ class DrinkSeeder extends Seeder
                 'type' => 'Vollbier',
                 'origin' => 'Bremen, Deutschland',
                 'alcoholContent' => 5.2,
-                'description' => "krass",
                 'image' => "https://imgix.ranker.com/node_img/13/251489/original/spaten-m-nchner-hell-beers-photo-1?fit=crop&fm=pjpg&q=60&w=144&h=144&dpr=2"
             ]
 
         ]);
+
+        //***++++++++Bier
+            Drink::createDrinkSeeder(
+                [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                    ['Gerstenmalz',false],
+                    ['Hopfen',false],
+                ['Sulfite',true]
+                ],
+
+
+                ['name' => 'Astra Urtyp',
+                'EAN' => '42140849',
+                'product' => 'Bier',
+                'type' => 'Pils',
+                'origin' => 'Hamburg, Deutschland',
+                'alcoholContent' => 4.9,
+                'image' => "storage/drinksImage/beer/astra_urtyp__0879.jpg"]
+            );
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Gerstenmalz',false],
+                ['Hopfen',false],
+                ['Hefe',false],
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Augustiner Weißbier',
+                'EAN' => '42140848', //Random EAN
+                'product' => 'Bier',
+                'type' => 'Weissbier',
+                'origin' => 'München, Deutschland',
+                'alcoholContent' => 5.4,
+                'image' => "storage/drinksImage/beer/augustiner_weissbier.jpg"]
+        );
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Gerstenmalz',false],
+                ['Hopfen',false]
+            ],
+
+            ['name' => 'Budweiser',
+                'EAN' => '42140847',
+                'product' => 'Bier',
+                'type' => 'Pils',
+                'origin' => 'Budweis, Tschechien',
+                'alcoholContent' => 5,
+                'image' => "storage/drinksImage/beer/1607_budweiser_budvar_05l.jpg"]
+        );
+
+
+
+
+        //**********Wein
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Muskattrauben',false],
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Voga Moscato',
+                'EAN' => '42140846',
+                'product' => 'Wein',
+                'type' => 'Weisswein',
+                'origin' => 'Italien',
+                'alcoholContent' => 6.5,
+                'image' => "storage/drinksImage/wine/voga_-_moscato.jpg"]
+        );
+
+        Drink::createDrinkSeeder(
+            [['rote Trauben',false],
+                ['schwarze Waldbeeren',false],                        //Inhaltstoffe für das Getränk eintragen
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Evel Reserva Tinto',
+                'EAN' => '42140845',
+                'product' => 'Wein',
+                'type' => 'Rotwein',
+                'origin' => 'Portugal',
+                'alcoholContent' => 14,
+                'image' => "storage/drinksImage/wine/5114_evel_reserva_tinto.jpg"]
+        );
+        Drink::createDrinkSeeder(
+            [                           //Inhaltstoffe für das Getränk eintragen
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Christkindl Glühwein',
+                'EAN' => '42140844',
+                'product' => 'Wein',
+                'type' => 'Glühwein',
+                'origin' => 'Kolbermoor, Deutschland',
+                'alcoholContent' => 9,
+                'image' => "storage/drinksImage/wine/5981_christkindl_gluehwein.jpg"]
+        );
+
+
+
     }
 }
+

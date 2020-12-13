@@ -15,7 +15,7 @@ class CreateSubstancesTable extends Migration
     {
         Schema::create('substances', function (Blueprint $table) {
             $table->id();
-            $table->string('name',20);
+            $table->string('name',20)->unique();
             $table->boolean('isAllergen');
             $table->timestamps();
         });

@@ -24,6 +24,9 @@ class CreateDrinksRatingsTable extends Migration
         });
     }
 
+    protected $primaryKey = ['drink_id', 'client_id'];
+    public $incrementing = false;
+
     /**
      * Reverse the migrations.
      *

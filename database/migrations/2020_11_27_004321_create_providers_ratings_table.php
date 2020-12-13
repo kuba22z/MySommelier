@@ -22,6 +22,9 @@ class CreateProvidersRatingsTable extends Migration
         });
     }
 
+    protected $primaryKey = ['client_id', 'provider_id'];
+    public $incrementing = false;
+
     /**
      * Reverse the migrations.
      *
