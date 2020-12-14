@@ -3,9 +3,6 @@
 
     width: 400px;
 }
-
-
-
 </style>
 
 <div class="sticky-top">
@@ -32,7 +29,7 @@
 
     <div class="form-group g">
         <label for="ean" class="labelInput">EAN:</label>
-        <input type="text" class="form-control" id="ean" name="ean" >
+        <input type="text" class="form-control" id="ean" name="ean" placeholder="(Besteht aus 8 oder 13 Ziffern)">
         <span style="color: red">@error('ean'){{$message}}@enderror</span>
     </div>
 
@@ -47,12 +44,14 @@
     <div class="col-md-7 g" id="type">
         <label for="type">Art</label>
         <select name="type" id="type">
-            <option value="Mischbier">Mischbier</option>
             <option value="Pils">Pils</option>
             <option value="Vollbier">Vollbier</option>
-            <option value="Riesling">Riesling</option>
-            <option value="Weizen">Weizen</option>
             <option value="Weissbier">Weissbier</option>
+            <option value="Weizen">Wieizen</option>
+            <option value="Riesling">Riesling</option>
+            <option value="Weisswein">Weisswein</option>
+            <option value="Rotwein">Rotwein</option>
+            <option value="Glühwein">Glühwein</option>
         </select>
     </div>
 

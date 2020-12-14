@@ -65,7 +65,7 @@ class Business extends Controller
     public function check(Request $req)
     {
         $message = [
-            'openHours.regex' => "Fehler: verwenden Sie dieses Format: Mo:08:00-15:59;"
+            'openHours.regex' => "use this format: Mo-Fr:08:00-16:00;So:08:00-15:59;"
         ];
 
         $rules = [
@@ -100,7 +100,7 @@ class Business extends Controller
             }), 'nullable', 'digits_between:4,5'],
 
             'website' => 'url | nullable',
-            'openHours' => ['nullable', 'regex:(^((Mo|Di|Mi|Do|Fr|Sa|So):[0-2]\d:[0-5]\d-[0-2]\d:[0-5]\d;){1,7}$)'],
+            'openHours' => ['nullable', 'regex:(^((Mo|Di|Mi|Do|Fr|Sa|So)(-(Mo|Di|Mi|Do|Fr|Sa|So)){0,1}:[0-2]\d:[0-5]\d-[0-2]\d:[0-5]\d;){1,7}$)'],
             'telNr' => ['nullable', 'regex:(^\+?\d{6,14}$)'],
             'description' => 'string | max:500 | nullable',
             'image' => 'image | file | nullable'

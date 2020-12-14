@@ -15,6 +15,103 @@ class DrinkSeeder extends Seeder
      */
     public function run()
     {
+
+        //***++++++++Bier
+            Drink::createDrinkSeeder(
+                [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                    ['Gerstenmalz',false],
+                    ['Hopfen',false],
+                ['Sulfite',true]
+                ],
+
+
+                ['name' => 'Astra Urtyp',
+                'EAN' => '42140849',
+                'product' => 'Bier',
+                'type' => 'Pils',
+                'origin' => 'Hamburg, Deutschland',
+                'alcoholContent' => 4.9,
+                'image' => "storage/drinksImage/beer/astra_urtyp__0879.jpg"]
+            );
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Gerstenmalz',false],
+                ['Hopfen',false],
+                ['Hefe',false],
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Augustiner Weißbier',
+                'EAN' => '42140848', //Random EAN
+                'product' => 'Bier',
+                'type' => 'Weissbier',
+                'origin' => 'München, Deutschland',
+                'alcoholContent' => 5.4,
+                'image' => "storage/drinksImage/beer/augustiner_weissbier.jpg"]
+        );
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Gerstenmalz',false],
+                ['Hopfen',false]
+            ],
+
+            ['name' => 'Budweiser',
+                'EAN' => '42140847',
+                'product' => 'Bier',
+                'type' => 'Pils',
+                'origin' => 'Budweis, Tschechien',
+                'alcoholContent' => 5,
+                'image' => "storage/drinksImage/beer/1607_budweiser_budvar_05l.jpg"]
+        );
+
+
+
+        //**********Wein
+        Drink::createDrinkSeeder(
+            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
+                ['Muskattrauben',false],
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Voga Moscato',
+                'EAN' => '42140846',
+                'product' => 'Wein',
+                'type' => 'Weisswein',
+                'origin' => 'Italien',
+                'alcoholContent' => 6.5,
+                'image' => "storage/drinksImage/wine/voga_-_moscato.jpg"]
+        );
+
+        Drink::createDrinkSeeder(
+            [['rote Trauben',false],
+                ['schwarze Waldbeeren',false],                        //Inhaltstoffe für das Getränk eintragen
+                ['Farbstoffe',false],
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Evel Reserva Tinto',
+                'EAN' => '42140845',
+                'product' => 'Wein',
+                'type' => 'Rotwein',
+                'origin' => 'Portugal',
+                'alcoholContent' => 14,
+                'image' => "storage/drinksImage/wine/5114_evel_reserva_tinto.jpg"]
+        );
+        Drink::createDrinkSeeder(
+            [                           //Inhaltstoffe für das Getränk eintragen
+                ['Sulfite',true]
+            ],
+
+            ['name' => 'Christkindl Glühwein',
+                'EAN' => '42140844',
+                'product' => 'Wein',
+                'type' => 'Glühwein',
+                'origin' => 'Kolbermoor, Deutschland',
+                'alcoholContent' => 9,
+                'image' => "storage/drinksImage/wine/5981_christkindl_gluehwein.jpg"]
+        );
+
+
         DB::table('drinks')->insert([
             [  'name' => 'Bitburger',
                 'EAN' => '133523252',
@@ -71,102 +168,6 @@ class DrinkSeeder extends Seeder
             ]
 
         ]);
-
-        //***++++++++Bier
-            Drink::createDrinkSeeder(
-                [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
-                    ['Gerstenmalz',false],
-                    ['Hopfen',false],
-                ['Sulfite',true]
-                ],
-
-
-                ['name' => 'Astra Urtyp',
-                'EAN' => '42140849',
-                'product' => 'Bier',
-                'type' => 'Pils',
-                'origin' => 'Hamburg, Deutschland',
-                'alcoholContent' => 4.9,
-                'image' => "storage/drinksImage/beer/astra_urtyp__0879.jpg"]
-            );
-        Drink::createDrinkSeeder(
-            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
-                ['Gerstenmalz',false],
-                ['Hopfen',false],
-                ['Hefe',false],
-                ['Sulfite',true]
-            ],
-
-            ['name' => 'Augustiner Weißbier',
-                'EAN' => '42140848', //Random EAN
-                'product' => 'Bier',
-                'type' => 'Weissbier',
-                'origin' => 'München, Deutschland',
-                'alcoholContent' => 5.4,
-                'image' => "storage/drinksImage/beer/augustiner_weissbier.jpg"]
-        );
-        Drink::createDrinkSeeder(
-            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
-                ['Gerstenmalz',false],
-                ['Hopfen',false]
-            ],
-
-            ['name' => 'Budweiser',
-                'EAN' => '42140847',
-                'product' => 'Bier',
-                'type' => 'Pils',
-                'origin' => 'Budweis, Tschechien',
-                'alcoholContent' => 5,
-                'image' => "storage/drinksImage/beer/1607_budweiser_budvar_05l.jpg"]
-        );
-
-
-
-
-        //**********Wein
-        Drink::createDrinkSeeder(
-            [['Wasser',false],     //Inhaltstoffe für das Getränk eintragen
-                ['Muskattrauben',false],
-                ['Sulfite',true]
-            ],
-
-            ['name' => 'Voga Moscato',
-                'EAN' => '42140846',
-                'product' => 'Wein',
-                'type' => 'Weisswein',
-                'origin' => 'Italien',
-                'alcoholContent' => 6.5,
-                'image' => "storage/drinksImage/wine/voga_-_moscato.jpg"]
-        );
-
-        Drink::createDrinkSeeder(
-            [['rote Trauben',false],
-                ['schwarze Waldbeeren',false],                        //Inhaltstoffe für das Getränk eintragen
-                ['Sulfite',true]
-            ],
-
-            ['name' => 'Evel Reserva Tinto',
-                'EAN' => '42140845',
-                'product' => 'Wein',
-                'type' => 'Rotwein',
-                'origin' => 'Portugal',
-                'alcoholContent' => 14,
-                'image' => "storage/drinksImage/wine/5114_evel_reserva_tinto.jpg"]
-        );
-        Drink::createDrinkSeeder(
-            [                           //Inhaltstoffe für das Getränk eintragen
-                ['Sulfite',true]
-            ],
-
-            ['name' => 'Christkindl Glühwein',
-                'EAN' => '42140844',
-                'product' => 'Wein',
-                'type' => 'Glühwein',
-                'origin' => 'Kolbermoor, Deutschland',
-                'alcoholContent' => 9,
-                'image' => "storage/drinksImage/wine/5981_christkindl_gluehwein.jpg"]
-        );
-
 
 
     }

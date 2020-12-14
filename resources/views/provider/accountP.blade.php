@@ -2,8 +2,6 @@
     #firstName, #secondName,#email,#birthDate {
         width: 200px;
     }
-
-
 </style>
 
 <div class="sticky-top">

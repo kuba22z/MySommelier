@@ -48,7 +48,13 @@ Route::group(['middleware' => ['auth:provider']], function () {   //redirection 
 
     Route::post('/Anbieter/Geschaeft/einrichten', [Business::class, 'store'])->name('business_save');
 
+    Route::view('/Anbieter/Geschaeft/Getraenk/auswaehlen','provider.business')->name('choose_drink_view');
+
+    Route::post('/Anbieter/Geschaeft/Getraenk/hochladen',[CreateDrink::class,'createByCsv'])->name('create_drink_byCsv');
+
     Route::get('/Anbieter/Geschaeft/Getraenk/suchen', [SearchDrink::class, 'search'])->name('search_drink');
+
+    Route::get('/Anbieter/Geschaeft/Getraenk/Vorschlag', [SearchDrink::class, 'autocomplete'])->name('autocomplete_drink');
 
     Route::post('/Anbieter/Geschaeft/Getraenk/suchen', [AddDrink::class, 'add'])->name('addDrink');
 
@@ -100,7 +106,3 @@ Route::get('/filter_options', function () {
 Route::get('/anb', function () {
     return view('home.anbieter_getr_liste', []);
 });
-
-
-
-

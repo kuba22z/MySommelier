@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Account;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,16 +12,21 @@ use Illuminate\Support\Facades\Validator;
 
 class Account extends Controller
 {
-    public function change(Request $req){
+    public function change(Request $req)
+    {
         $this->check($req);
+
+        $date = strtotime($req->get('birthDate'));
 
         $changes = [
             'firstName' => $req->get('firstName'),
 
             'secondName' => $req->get('secondName'),
             'email' => $req->get('email'),
-            'birthDate' => date("Y-m-d", strtotime( $req->get('birthDate'))),
+            'birthDate' => date("Y-m-d", $date),
         ];
+        if ($date == null)
+            unset($changes['birthDate']);
 
         //filtert alle Einträge im Array die null sind damit dann
         // nix in der Db überschrieben wird
@@ -43,7 +50,7 @@ class Account extends Controller
                 'nullable', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ ,.'-]+$)/i"],
 
             'email' => 'nullable |email | string | max:100',
-            'birthDate' => 'nullable | date | max:40',
+            'birthDate' => 'nullable| date | max:40',
         ];
 
         //Validator schickt die Daten direkt zurück zu der Geschaefteseite wenn es Fehler gab
@@ -51,15 +58,15 @@ class Account extends Controller
 
     }
 
-    public function changePsw(Request $req){
-        $provider=Auth::user();
-        $newPassword=$req->get('password');
-        $newPassword2=$req->get('password_confirm');
-        $actualPassword=$req->get('actualPsw');
+    public function changePsw(Request $req)
+    {
+        $provider = Auth::user();
+        $newPassword = $req->get('password');
+        $newPassword2 = $req->get('password_confirm');
+        $actualPassword = $req->get('actualPsw');
 
 
-
-        if(Hash::check($actualPassword, $provider->getAuthPassword()) && $newPassword===$newPassword2 && $newPassword!==$actualPassword ){
+        if (Hash::check($actualPassword, $provider->getAuthPassword()) && $newPassword === $newPassword2 && $newPassword !== $actualPassword) {
 
             $changes = ['password' => Hash::make($newPassword)];
 
@@ -67,14 +74,9 @@ class Account extends Controller
             $req->session()->flash('successful', true);
             return redirect()->back();
 
-        }
-        else {
+        } else {
             $req->session()->flash('successful', false);
-               return redirect()->back();
+            return redirect()->back();
         }
     }
-
-
-
-
 }

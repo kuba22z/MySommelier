@@ -25,7 +25,6 @@ class Register extends Controller
             $creator->createClient($request->all());  //create a Client and fill a record
         } else {
              $creator->createProvider($request->all()); //create a Provider and fill a record
-
         }
 
         $request->session()->flash('Registered', true);

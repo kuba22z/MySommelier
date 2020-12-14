@@ -1,6 +1,8 @@
 <div class="sticky-top">
     @include('layout.navbar')
 </div>
+
+
 <style>
     h1 {
         margin-left: auto;
@@ -13,7 +15,7 @@
     }
 
 
- #name, #zip, #street, #city, #website {
+    #name, #zip, #street, #city, #website {
         width: 180px;
     }
 
@@ -36,6 +38,7 @@
         <span style="color: red">@error('name'){{$message}}@enderror</span>
     </div>
 
+
     <div class="form-group">
         <label for="zip" class="labelInput">PLZ:</label>
         <input type="text" class="form-control" id="zip" name="zip">
@@ -49,7 +52,7 @@
 
     <div class="form-group">
         <label for="street" class="labelInput">Straße und Hausnr. :</label>
-        <input type="text" class="form-control" id="street" name="street">
+        <input type="text" class="form-control" id="street" name="street" placeholder="(getrennt mit einem leerzeichen)">
         <span style="color: red">@error('street'){{$message}}@enderror</span>
     </div>
 
@@ -106,7 +109,8 @@
 
 
 <!-- Button trigger modal -->
-    <a data-toggle="modal" data-target="#suchenModal">
+    <a data-toggle="modal" data-target="#suchenModal"
+       onclick="history.pushState({}, null, '/Anbieter/Geschaeft/Getraenk/auswaehlen')">
         <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -123,19 +127,26 @@
 
 </form>
 
+
 @include('provider.searchDrink')
 @include('provider.EANscan')
 
 
 </body>
 
-<script>
 
+<script>
     //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
     if (window.location.pathname === '/Anbieter/Geschaeft/Getraenk/EANscan') {
         $('#EANscanModal').modal('show');
     }
+
+    //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
+    if (window.location.pathname === '/Anbieter/Geschaeft/Getraenk/auswaehlen') {
+        $('#suchenModal').modal('show');
+    }
 </script>
+
 
 
 
