@@ -110,7 +110,7 @@
                         <div class="form-group textgroup pass2Textgroup">
 
                             <label for="password2r" class="labelInput">Passwort wiederholen:</label>
-                            <input type="password" class="form-control-static" id="password2r"
+                            <input type="password" class="form-control" id="password2r"
                                    name="password_confirmation">
 
                         </div>

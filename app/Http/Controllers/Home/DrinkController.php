@@ -44,8 +44,8 @@ class DrinkController extends Controller
         $where_clausel = [
             ['name', 'LIKE', "%{$name}%"],
             ['origin', 'LIKE', "%{$origin}%"],
-            ['alcoholContent', '>=', $alk1],
-            ['alcoholContent', '<=', $alk2]
+         //   ['alcoholContent', '>=', $alk1],
+         //   ['alcoholContent', '<=', $alk2]
             //[] <-- Muss noch nach Bewertung gefiltert werden
             //[] <-- Muss noch nach Inhaltsstoffe gefiltert werden
         ];
