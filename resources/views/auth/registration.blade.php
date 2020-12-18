@@ -25,7 +25,7 @@
     }
 
     .pass2Textgroup {
-        width: 311px;
+        width: 312px;
     }
 
     #labelRolle {

@@ -41,7 +41,7 @@
         //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
         $('#loginModal').on('hide.bs.modal', function (e) {
             //Ändert die aktuelle URL ohne die Seite neuzuladen
-            history.pushState({}, null, "/");
+           history.back();
         })
     </script>
 

@@ -1,5 +1,4 @@
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <style>
     .livesearch {
         width: 300px;
@@ -12,8 +11,7 @@
     <script>
         //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
         $('#suchenModal').on('hide.bs.modal', function (e) {
-            //Ändert die aktuelle URL ohne die Seite neuzuladen
-            history.pushState('/Anbieter/Geschaeft/Getraenk/auswaehlen', null, '/Anbieter/Geschaeft/einrichten');
+          history.back();
         })
     </script>
 

@@ -1,5 +1,5 @@
 <div class="sticky-top">
-    @include('layout.navbar')
+    @include('layout.navbarBusiness')
 </div>
 
 
