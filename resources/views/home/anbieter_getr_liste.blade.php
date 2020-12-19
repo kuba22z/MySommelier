@@ -28,7 +28,7 @@
 );
 ?>
 
-@foreach($anbieter_arr as $key => $value)
+@foreach($providers as $key => $provider)
     <!--
     {{ $rand_float=round(rand(0,10)/10,2)}}
     {{ $rand_int=rand(1,4)}}
@@ -39,11 +39,11 @@
     <div class="container-fluid anb_list">
         <div class="row">
             <div class="col-3">
-                <img src="{{ asset('storage/default.png') }}" width="85" height="85">
+                <img src="{{ asset($provider->image) }}" onerror=this.src="{{asset('storage/default.png')}}"  width="85" height="85">
             </div>
             <div class="col-5">
-                <h6><u><a href="#" class=" text-dark">{{ "$key" }}</a></u></h6>
-                <p class="text-muted">{{"▼ $value entfernt"}}</p>
+                <h6><u><a href="{{route('callBusiness_view',$provider->id,$provider->id)}}" class=" text-dark">{{ $provider->businessName }}</a></u></h6>
+                <p class="text-muted">{{"▼  entfernt"}}</p>
             </div>
             <div class="col-3.5">
                 <p class="text-muted">

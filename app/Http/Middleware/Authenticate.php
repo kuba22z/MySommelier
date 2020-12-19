@@ -20,6 +20,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        $request->session()->flash('showLogin', true);
         if ( $request->expectsJson()) {
             return view("home.home");
         }

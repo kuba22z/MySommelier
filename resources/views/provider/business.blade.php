@@ -29,7 +29,6 @@
 
 <body>
 <h1>Mein Geschäft</h1>
-
 <form method="POST" action="{{route('business_save')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
@@ -38,6 +37,11 @@
         <span style="color: red">@error('name'){{$message}}@enderror</span>
     </div>
 
+    <div class="form-group">
+        <label for="street" class="labelInput">Straße und Hausnr. :</label>
+        <input type="text" class="form-control" id="street" name="street" placeholder="(getrennt mit einem leerzeichen)">
+        <span style="color: red">@error('street'){{$message}}@enderror</span>
+    </div>
 
     <div class="form-group">
         <label for="zip" class="labelInput">PLZ:</label>
@@ -48,12 +52,6 @@
         <label for="city" class="labelInput">Stadt:</label>
         <input type="text" class="form-control" id="city" name="city">
         <span style="color: red">@error('city'){{$message}}@enderror</span>
-    </div>
-
-    <div class="form-group">
-        <label for="street" class="labelInput">Straße und Hausnr. :</label>
-        <input type="text" class="form-control" id="street" name="street" placeholder="(getrennt mit einem leerzeichen)">
-        <span style="color: red">@error('street'){{$message}}@enderror</span>
     </div>
 
     <div class="form-group">

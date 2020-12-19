@@ -17,17 +17,7 @@
 <a data-toggle="modal" data-target="#pswresetModal" hidden>
 </a>
 
-<div class="modal fade" id="pswrestModal" tabindex="-1" aria-labelledby="pswrestModalLabel" aria-hidden="true">
-
-    <script>
-        //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
-        $('#pswrestModal').on('hide.bs.modal', function (e) {
-
-            //Ändert die URL ohne die Seite neuzuladen
-            history.pushState({}, null, "/");
-        })
-    </script>
-
+<div class="modal fade" id="pswresetModal" tabindex="-1" aria-labelledby="pswresetModalLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -50,12 +40,6 @@
     </div>
 </div>
 
-<script>
-    //Prüft ob die URL /passwort/reset ist. Wenn ja wird das Modal gezeigt
-    if (window.location.pathname === '/passwort-reset') {
-        $('#pswrestModal').modal('show');
-    }
-</script>
 
 
 

@@ -73,16 +73,6 @@
 
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
 
-    <script>
-        //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
-        $('#registerModal').on('hide.bs.modal', function (e) {
-
-            //Ändert die URL ohne die Seite neuzuladen
-            history.pushState({}, null, "/");
-        })
-    </script>
-
-
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -95,7 +85,6 @@
 
                 <form method="POST" action={{route('register')}}>
                     @csrf
-
                     <div class="group">
                         <div class="form-group textgroup">
                             <label for="emailr" class="labelInput">E-Mail:</label>
@@ -130,7 +119,7 @@
                     </div>
                     <div class="d-flex flex-row bd-highlight mb-3">
                         <input type="hidden" name="captchaID" value="{{$randImage->id}}">
-                        <img src="{{$randImage->image}}" class="img-fluid" id="chaptcha"
+                        <img src="{{asset($randImage->image)}}" class="img-fluid" id="chaptcha"
                              alt="Fehler beim laden des Captchas" height="80px" width="80px">
                         <input type="number" id="result" name="result" width=3>
 
@@ -139,24 +128,11 @@
 
                     <button type="submit" class="btn btn-primary" id="register">Registrieren</button>
                     <br>
-                    <a href="{{route('login_view')}}" class="btn btn-primary" role="button" id="back">Zurück</a>
+                    <a onclick="$('#registerModal').modal('hide')
+                    $('#loginModal').modal('show')" class="btn btn-primary" role="button" id="back">Zurück</a>
                 </form>
 
             </div>
         </div>
     </div>
 </div>
-
-
-<script>
-    //Prüft ob die URL /registration ist. Wenn ja wird das Modal gezeigt
-    if (window.location.pathname === '/registration') {
-        $('#registerModal').modal('show');
-    }
-</script>
-
-<?php /*  optional
-<span style="color: red">@error('password'){{$message}}@enderror</span>
-
-<span style="color: red">@error('email'){{$message}}@enderror</span>
-<span style="color: red">@error('password'){{$message}}@enderror</span>

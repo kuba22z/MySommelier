@@ -39,7 +39,7 @@
         <div class="row mx-auto">
 
             <div class="col-3.5">
-                <img src="{{ $drink->image }}" width="85" height="85">
+                <img src="{{ $drink->image }}" onerror=this.src="{{asset('storage/default.png')}}" width="85" height="85">
             </div>
             <div class="col-6">
                 <h6><u><a href="?info={{$drink->name}}&bew={{$random_bew}}" class=" text-dark">{{ $drink->name }}</a></u></h6>

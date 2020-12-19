@@ -34,16 +34,9 @@
 
 
 
+
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 
-    <script>
-
-        //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
-        $('#loginModal').on('hide.bs.modal', function (e) {
-            //Ändert die aktuelle URL ohne die Seite neuzuladen
-           history.back();
-        })
-    </script>
 
 
     <div class="modal-dialog modal-dialog-centered">
@@ -80,11 +73,15 @@
 
 
                     @if(session('LoggedIn')===false)
-                        <a href={{route('pswreset_view')}} id="PwV"> Passwort vergessen?</a><br>
+                        <a onclick="
+                    $('#loginModal').modal('hide')
+                   $('#pswresetModal').modal('show')" style="color: #00b5ad" id="PwV"> Passwort vergessen?</a><br>
                     @endif
                     <br><br><br>
                     <button type="submit" class="btn btn-primary" id="anmelden">Anmelden</button>
-                    <div class="register"><a href="{{route('registration_view')}}">Neues Konto erstellen</a></div>
+                    <div class="register"><a onclick="
+                    $('#loginModal').modal('hide')
+                    $('#registerModal').modal('show')" style="color: #00b5ad">Neues Konto erstellen</a></div>
 
                 </form>
 
@@ -94,11 +91,16 @@
     </div>
 </div>
 
+
 <script>
     //Prüft ob die URL /login ist. Wenn ja wird das Modal gezeigt
-    if (window.location.pathname === '/login') {
-        $('#loginModal').modal('show');
-    }
+    @if(session('Registered')===false || session('LoggedIn')===false || session('Registered')===true || session('showLogin')===true)
+    $('#loginModal').modal('show')
+        @endif
+    @if(session('showLogin')==true)
+    //Ändert die URL ohne die Seite neuzuladen
+    history.pushState({}, null, "/");
+    @endif
 </script>
 
 

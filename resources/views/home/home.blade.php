@@ -140,7 +140,6 @@
     </form>
 
 
-
     @if(!(isset($_GET['info']) && $_GET['info']))
         <strong><h5 id="welcome_text" class="toggle_text_on_filter">Empfohlene Getränke:</h5></strong>
     @else
@@ -149,8 +148,9 @@
 </div>
 
 @include("auth.registration")
-@include('auth.pswreset')
+@include("auth.pswreset")
 @include("auth.login")
+
 
 
 @if(isset($_GET['info']) && $_GET['info'])

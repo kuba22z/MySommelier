@@ -18,7 +18,7 @@ class Provider extends Authenticatable
     // public $table='provider';
     // optional: to secure that this Model corresponds to table: provider
     protected $guard = 'provider';
-
+    public $table='providers';
     /**
      * The attributes that are mass assignable.
      *
@@ -59,4 +59,23 @@ class Provider extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getProviderByIdWithRecommend(int $id){
+        return DB::table('providers')
+            ->select('providers.id','businessName','providers.image','openingHours','description','city','street','zip','drinks.name','type','alcoholContent')
+            ->where('providers.id','=',$id)
+            ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
+            ->where('recommended',"=",true)
+            ->leftJoin('drinks','drinks_offers.drink_id','=','drinks.id')
+            ->get();
+    }
+    public static function getProviderByIdWithAllDrinks(int $id){
+        return DB::table('providers')
+            ->select('providers.id','businessName','providers.image','openingHours','description','city','street','zip','drinks.name','type','alcoholContent')
+            ->where('providers.id','=',$id)
+            ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
+            ->leftJoin('drinks','drinks_offers.drink_id','=','drinks.id')
+            ->get();
+    }
+
 }

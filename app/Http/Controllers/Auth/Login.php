@@ -35,7 +35,7 @@ class Login extends Controller
             // damit diese Email in der view angezeigt wird
             $request->session()->flash("password", $password);
             $request->session()->flash('LoggedIn', false);
-            return redirect()->route('login_view');
+            return redirect()->back();
         }
 
     }

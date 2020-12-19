@@ -46,7 +46,6 @@
             <button type="button" onclick="var win = window.open('https://de-de.facebook.com/', '_blank'); win.focus();" name="share_fb" id="share_fb" class="btn btn-outline-dark"><img src="{{asset('storage/facebook.png')}}"><p> Share</p></button>
         </div>
         <div class="col">
-
         <!--{{$bew_hinterkomma = $_GET['bew']-intval($_GET['bew'])}}-->
             <p class="dis">
                 <strong><p class="getr_name">{{$_GET['info']}}</p></strong>

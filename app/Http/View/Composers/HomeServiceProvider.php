@@ -6,6 +6,7 @@ namespace App\Http\View\Composers;
 
 use App\Models\CaptchaImage;
 use App\Models\Drink;
+use App\Models\Provider;
 use Carbon\Laravel\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
@@ -30,7 +31,7 @@ class HomeServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        View::composer('home.home', function ($view) {
+        View::composer(['home.home','client.callBusiness'], function ($view) {
            //Alle variablen sind nur in der home view zugänglich
             $drinks=Drink::all();
             $image = new CaptchaImage();
@@ -38,11 +39,14 @@ class HomeServiceProvider extends ServiceProvider
 
             $data = [
                 'drinks' => $drinks,
-            ];
+                'providers' => Provider::all('id','businessName','image'),
+                ];
             $view->with('randImage',$randImage);
 
             View::share($data); //durch share kann die Variable $drinks in der view überschireben werden
         });
+
+
 
     }
 }
