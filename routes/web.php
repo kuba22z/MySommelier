@@ -91,7 +91,7 @@ Route::get('/Geschaeft/{id}', [CallBusiness::class, 'index'])->name('callBusines
 
 Route::view('/', 'home.home');
 
-Route::get('/', [DrinkController::class, 'getDrinkToName']);
+Route::get('/', [DrinkController::class, 'getDrinkToName'])->name('drink_view');
 Route::post('/', [DrinkController::class, 'searchButton']);
 
 Route::get('/getr_details', [function () {

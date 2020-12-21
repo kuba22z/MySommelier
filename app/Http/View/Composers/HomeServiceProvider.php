@@ -39,15 +39,11 @@ class HomeServiceProvider extends ServiceProvider
 
             $data = [
                 'drinks' => $drinks,
-                'providers' => Provider::all('id','businessName','image'),
                 ];
             $view->with('randImage',$randImage);
 
             View::share($data); //durch share kann die Variable $drinks in der view überschireben werden
         });
-
-
-
     }
 }
 

@@ -23,12 +23,12 @@ class DrinksOffer extends Model
         'provider_id'
     ];
 
-    public static function insertOffer(int $drinksID,int $providerID)
+    public static function insertOffer(int $drinksID,int $providerID,bool $recommend=false)
     {
         DB::table('drinks_offers')->insert(
             ['provider_id' => $providerID,
                 'drink_id' => $drinksID,
-                'recommended' => false
+                'recommended' => $recommend
             ]
         );
     }
@@ -51,5 +51,6 @@ class DrinksOffer extends Model
             ->leftJoin('drinks', 'drinks.id', '=', 'drinks_offers.drink_id')
             ->get();
     }
+
 
 }

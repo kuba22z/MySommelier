@@ -42,7 +42,7 @@
                 <img src="{{ $drink->image }}" onerror=this.src="{{asset('storage/default.png')}}" width="85" height="85">
             </div>
             <div class="col-6">
-                <h6><u><a href="?info={{$drink->name}}&bew={{$random_bew}}" class=" text-dark">{{ $drink->name }}</a></u></h6>
+                <h6><u><a href="?info={{$drink->name}}&bew={{$random_bew}}&id={{$drink->id}}" class=" text-dark">{{ $drink->name }}</a></u></h6>
                 <p class="text-muted">{{ "$drink->type | $drink->alcoholContent % Vol." }}</p>
             </div>
 

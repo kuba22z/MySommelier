@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\CaptchaImage;
 use App\Models\Drink;
+use App\Models\Provider;
 use http\Url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,23 @@ class DrinkController extends Controller
     public function getDrinkToName(Request $req){
         //$name = request()->route()->parameter('info');
 
-        $name = $req->request->get("info");
+
+        if($req->request->get('moreDrinks')==="true")
+            $numOfProviders=20;
+        else
+            $numOfProviders=3;
+
+       $name = $req->request->get("info");
+
+        $noProvider=false;
+        $providers=null;
+       if(!empty($req->request->get("id"))) {
+           $drink_id = $req->request->get("id");
+          $drink_id=(int)$drink_id;
+           $providers=Provider::getProvidersWithDrinksByDrinkId($drink_id,$numOfProviders);
+           if(count($providers)===0)
+               $noProvider=true;
+       }
         //$bew = $req->request->get("bew");
 
         if (!empty($req->request->all())){
@@ -25,7 +42,9 @@ class DrinkController extends Controller
             $drinks = Drink::all();
         }
 
-        return view('home.home', ['drinks' => $drinks]);
+        return view('home.home', ['drinks' => $drinks,
+                                       'providers' => $providers,
+                                         'noProvider' => $noProvider]);
     }
 
     public function searchButton(Request $req){

@@ -61,21 +61,39 @@ class Provider extends Authenticatable
     ];
 
     public static function getProviderByIdWithRecommend(int $id){
-        return DB::table('providers')
-            ->select('providers.id','businessName','providers.image','openingHours','description','city','street','zip','drinks.name','type','alcoholContent')
-            ->where('providers.id','=',$id)
-            ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
-            ->where('recommended',"=",true)
-            ->leftJoin('drinks','drinks_offers.drink_id','=','drinks.id')
-            ->get();
+        return DB::transaction(function () use ($id) {
+            $provider = DB::table('providers')
+                ->select('providers.id', 'businessName', 'providers.image', 'openingHours', 'description', 'city', 'street', 'zip', 'drinks.name','drinks.image AS drinksImage', 'type', 'alcoholContent')
+                ->where('providers.id', '=', $id)
+                ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
+                ->where('recommended', "=", true)
+                ->leftJoin('drinks', 'drinks_offers.drink_id', '=', 'drinks.id')
+                ->take(3)
+                ->get();
+            if ($provider->isEmpty())
+               $provider= DB::table('providers')
+                    ->select('providers.id', 'businessName', 'providers.image', 'openingHours', 'description', 'city', 'street', 'zip')
+                    ->where('providers.id', '=', $id)->get();
+
+            return $provider;
+        });
     }
     public static function getProviderByIdWithAllDrinks(int $id){
+            return DB::table('providers')
+                ->select('providers.id','businessName','providers.image','openingHours','description','city','street','zip','drinks.name','drinks.image AS drinksImage','type','alcoholContent')
+                ->where('providers.id','=',$id)
+                ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
+                ->leftJoin('drinks','drinks_offers.drink_id','=','drinks.id')
+                ->get();
+    }
+    public static function getProvidersWithDrinksByDrinkId(int $drink_id,int $take=3){
         return DB::table('providers')
-            ->select('providers.id','businessName','providers.image','openingHours','description','city','street','zip','drinks.name','type','alcoholContent')
-            ->where('providers.id','=',$id)
+            ->select('providers.image','providers.id','businessName')
             ->leftJoin('drinks_offers', 'providers.id', '=', 'drinks_offers.provider_id')
-            ->leftJoin('drinks','drinks_offers.drink_id','=','drinks.id')
+            ->where('drinks_offers.drink_id','=',$drink_id)
+            ->take($take)
             ->get();
     }
+
 
 }

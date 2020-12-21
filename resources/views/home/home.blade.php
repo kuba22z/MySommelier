@@ -12,8 +12,6 @@
 
     <style>
 
-
-
         .container-fluid{
             padding-top:10px;
             padding-bottom:10px;
@@ -47,19 +45,14 @@
         .bew{
             border-bottom:none;
         }
-
-        #welcome_text {
-            text-align: center;
-            background-color: white;
-        }
-
         #searchbar_header > .col {
             padding-left: 5px;
             padding-right: 5px;
         }
-
-
-
+        #welcome_text {
+            text-align: center;
+            background-color: white;
+        }
 
         /*       #iframe_container iframe{
                    display:block;
@@ -140,11 +133,9 @@
     </form>
 
 
-    @if(!(isset($_GET['info']) && $_GET['info']))
-        <strong><h5 id="welcome_text" class="toggle_text_on_filter">Empfohlene Getränke:</h5></strong>
-    @else
-        <strong><h5 id="welcome_text">Dieses Getränk finden Sie hier:</h5></strong>
-    @endif
+
+
+
 </div>
 
 @include("auth.registration")
@@ -155,6 +146,7 @@
 
 @if(isset($_GET['info']) && $_GET['info'])
     @include('home.anbieter_getr_liste')
+    @include('home.bewertung')
 @else
     @include('home.getr_liste', $drinks)
 @endif

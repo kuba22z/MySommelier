@@ -18,6 +18,7 @@
         border-bottom:1px solid black;
     }
 
+
 </style>
 
 <?php $anbieter_arr=array("Zuhause"=>"250m entfernt",
@@ -27,6 +28,9 @@
     "Apollo Kino & Bar"=>"600m"
 );
 ?>
+@if($noProvider!==true)
+<strong><h5 id="welcome_text">Dieses Getränk finden Sie hier:</h5></strong>
+ @endif
 
 @foreach($providers as $key => $provider)
     <!--
@@ -42,7 +46,7 @@
                 <img src="{{ asset($provider->image) }}" onerror=this.src="{{asset('storage/default.png')}}"  width="85" height="85">
             </div>
             <div class="col-5">
-                <h6><u><a href="{{route('callBusiness_view',$provider->id,$provider->id)}}" class=" text-dark">{{ $provider->businessName }}</a></u></h6>
+                <h6><u><a href="{{route('callBusiness_view',$provider->id)}}" class=" text-dark">{{ $provider->businessName }}</a></u></h6>
                 <p class="text-muted">{{"▼  entfernt"}}</p>
             </div>
             <div class="col-3.5">
@@ -67,14 +71,21 @@
 @endforeach
 
 <div style="bottom: 0px; " class="sticky-top bg-white">
-    <button type="submit" name="filter_button" id="btn1" class="btn btn-outline-dark ">Mehr</button>
-    <div class="container-fluid bew">
+   @if(app('request')->input('moreDrinks')!=="true" && $noProvider!==true)
+    <form method="GET" action="{{route('drink_view')}}">
+        <input name="info" hidden value="{{app('request')->input('info')}}">
+        <input name="bew" hidden value="{{app('request')->input('bew')}}">
+        <input name="id" hidden value="{{app('request')->input('id')}}">
+        <button type="submit" name="moreDrinks" value="true" id="btn1" class="btn btn-outline-dark ">Mehr</button>
+    </form>
+    @endif
+        <div class="container-fluid bew">
         <div class="row bew_head">
             <div class="col">
                 <strong><h4>Bewertungen</h4></strong>
             </div>
             <div class="col">
-                <a href="#" style="color:black;">Bewertung schreiben ></a>
+                <a onclick="$('#BewertungModal').modal('show')" style="color:black;">Bewertung schreiben ></a>
             </div>
 
         </div>
