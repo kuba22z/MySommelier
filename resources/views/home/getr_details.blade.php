@@ -32,6 +32,10 @@
             font-size:1.2rem;
             display:inline;
         }
+        .substances{
+            margin-left: 20px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +78,9 @@
 
         </div>
     </div>
+    @if(app('request')->input('moreDrinks')==="true")
+        <p class="substances">Inhaltstoffe:{{" ".$drink->substances}}</p>
+    @endif
 @endforeach
 </body>
 </html>

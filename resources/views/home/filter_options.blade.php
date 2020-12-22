@@ -48,15 +48,13 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
-
-
     </style>
-
 
 </head>
 <body>
-<form action="{{URL::to('/')}}filter_options" method="post">
+
+
+
     <!-- https://www.w3schools.com/tags/tag_label.asp -->
     <div class="row filter_opt pl-0 pr-0" id="filter_row">
         <div class="col pl-1 pr-1">
@@ -95,8 +93,8 @@
     <div class="row filter_opt pl-0 pr-0" id="filter_row">
         <div class="col pl-1 pr-1">
             <label for="inhaltsstoffe_input">Inhaltsstoffe</label>
-            <input type="text" id="inhaltsstoffe_input" name="inhaltsstoffe_input" class="mt-1">
-            <input type="checkbox" id="keine_allergene_checkbox"><p style="display:inline; padding-left: 10px;">Keine Allergene</p>
+            <input type="text" id="inhaltsstoffe_input" name="inhaltsstoffe_input" class="mt-1" placeholder="Zb.:Wasser,Sulfite">
+            <input type="checkbox" id="keine_allergene_checkbox" name="keineAllergene" value="false"><p style="display:inline; padding-left: 10px;">Keine Allergene</p>
         </div>
         <div class="col pl-1 pr-1">
             <label for="bewertung">Bewertung</label>
@@ -106,7 +104,6 @@
             @endfor
         </div>
     </div>
-</form>
 </body>
 </html>
 

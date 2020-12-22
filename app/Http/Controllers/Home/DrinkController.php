@@ -8,6 +8,7 @@ use App\Models\Provider;
 use http\Url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 
 class DrinkController extends Controller
@@ -15,36 +16,40 @@ class DrinkController extends Controller
 
 
     public function getDrinkToName(Request $req){
-        //$name = request()->route()->parameter('info');
-
-
-        if($req->request->get('moreDrinks')==="true")
-            $numOfProviders=20;
-        else
-            $numOfProviders=3;
-
-       $name = $req->request->get("info");
-
         $noProvider=false;
         $providers=null;
+        $drinks=null;
        if(!empty($req->request->get("id"))) {
            $drink_id = $req->request->get("id");
           $drink_id=(int)$drink_id;
-           $providers=Provider::getProvidersWithDrinksByDrinkId($drink_id,$numOfProviders);
+
+           DB::beginTransaction();
+            try {
+                if ($req->request->get('moreDrinks') === "true") {
+                    $numOfProviders = 20;
+                    $drinks = Drink::getDrinkByIDWithSubstances($drink_id);
+                } else {
+                    $drinks = Drink::getDrinkByID($drink_id);
+                    $numOfProviders = 3;
+                }
+
+
+                $providers = Provider::getProvidersWithDrinksByDrinkId($drink_id, $numOfProviders);
+            DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+            }
+
            if(count($providers)===0)
                $noProvider=true;
        }
-        //$bew = $req->request->get("bew");
-
-        if (!empty($req->request->all())){
-            $drinks = Drink::all()->where('name', 'IS', $name);
-        }else{
-            $drinks = Drink::all();
-        }
-
+       else{
+           $drinks = Drink::all();
+       }
         return view('home.home', ['drinks' => $drinks,
                                        'providers' => $providers,
-                                         'noProvider' => $noProvider]);
+                                         'noProvider' => $noProvider,
+                                      ]);
     }
 
     public function searchButton(Request $req){
@@ -56,33 +61,42 @@ class DrinkController extends Controller
         $product = $req->request->get("prod_select");
         $type = $req->request->get("art_select");
         $origin = $req->request->get("herkunft_input");
+        $substances= $req->get('inhaltsstoffe_input');
+        $allergen =$req->request->get("keineAllergene");
+
 
         $alk1 = $req->request->get("alkoholgehalt1");
         $alk2 = $req->request->get("alkoholgehalt2");
 
         $where_clausel = [
-            ['name', 'LIKE', "%{$name}%"],
+            ['drinks.name', 'LIKE', "%{$name}%"],
             ['origin', 'LIKE', "%{$origin}%"],
          //   ['alcoholContent', '>=', $alk1],
          //   ['alcoholContent', '<=', $alk2]
             //[] <-- Muss noch nach Bewertung gefiltert werden
-            //[] <-- Muss noch nach Inhaltsstoffe gefiltert werden
         ];
-
-        if (!empty($req->request->all())){
             if($product !== "all"){
                 array_push($where_clausel,['product', '=', $product]);
             }
             if($type !== "all"){
                 array_push($where_clausel,['type', '=', $type]);
             }
+            if(!empty($substances))
+                $substances =explode(',',$substances);
+                else
+            $substances=[];
 
-            $drinks = Drink::where($where_clausel)->get();
-        }else{
-            $drinks = Drink::all();
-        }
+             if($allergen==="false")
+                 $allergen = false;
+            else
+                $allergen = true;
 
-        return view('home.home', ['drinks' => $drinks]);
+                $drinks = Drink::getDrinkByWhereClauselWithSubstances($where_clausel,$substances,$allergen);
+
+
+        return view('home.home', ['drinks' => $drinks,
+                                        'allergen' => $allergen,
+                                         'substancesInput' =>$substances]);
     }
 
 }

@@ -17,8 +17,6 @@
         border-top:1px solid black;
         border-bottom:1px solid black;
     }
-
-
 </style>
 
 <?php $anbieter_arr=array("Zuhause"=>"250m entfernt",

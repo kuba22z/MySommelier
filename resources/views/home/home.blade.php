@@ -92,7 +92,7 @@
 <div class="sticky-top bg-white">
 
     @include('layout.navbar')
-    <form class="container-fluid searchbar" action="{{URL::to('/')}}" method="POST">
+    <form class="container-fluid searchbar" action="{{route('search_in_home')}}" method="POST">
         @csrf
         <div class="row">
             <div class="col">
@@ -122,17 +122,15 @@
             </div>
         </div>
 
-
-
-        @if(isset($_GET['info']) && $_GET['info'])
-            <div id="frame_container">
-
-                @include('home.getr_details')
-            </div>
-        @endif
     </form>
 
 
+    @if(isset($_GET['info']) && $_GET['info'])
+        <div id="frame_container">
+
+            @include('home.getr_details')
+        </div>
+    @endif
 
 
 

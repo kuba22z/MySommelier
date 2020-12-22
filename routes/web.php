@@ -92,16 +92,8 @@ Route::get('/Geschaeft/{id}', [CallBusiness::class, 'index'])->name('callBusines
 Route::view('/', 'home.home');
 
 Route::get('/', [DrinkController::class, 'getDrinkToName'])->name('drink_view');
-Route::post('/', [DrinkController::class, 'searchButton']);
+Route::post('/', [DrinkController::class, 'searchButton'])->name('search_in_home');
 
-Route::get('/getr_details', [function () {
-    return view('home.getr_details');
-}]);
 
-Route::get('/filter_options', function () {
-    return view('home.filter_options', []);
-});
 
-Route::get('/anb', function () {
-    return view('home.anbieter_getr_liste', []);
-});
+
