@@ -27,7 +27,7 @@ class CreateProvidersTable extends Migration
 
             $table->string('website',100)->nullable();
             $table->string('openingHours',100)->nullable();
-            $table->string('phoneNumber',20)->nullable();
+            $table->string('phoneNumber',30)->nullable();
             $table->string('description',500)->nullable();
             $table->string('image')->nullable();
 
