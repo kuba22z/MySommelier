@@ -48,8 +48,48 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
+        .slider-range{
+margin-left: 10px;
+
+        }
+        #alcoholContent{
+            position: relative;
+            left: 20px;
+            width: 130px;
+        }
     </style>
 
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script> var $jq1124 = jQuery.noConflict( false ); </script>
+
+
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type=" text/javascript">
+        $jq1124(document).ready(
+            ( function() {
+                console.log($jq1124().jquery);
+
+                $jq1124( ".slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 25,
+                    step: .1,
+                    values: [ 0, 25 ],
+                    slide: function( event, ui ) {
+                        $jq1124( "#alcoholContent" ).val(  ui.values[ 0 ] + "%" +" - " + ui.values[ 1 ]+"%" );
+                    }
+                });
+                $jq1124( "#alcoholContent" ).val(  $jq1124( ".slider-range" ).slider( "values", 0 ) +"%"+
+                    " - " + $jq1124( ".slider-range" ).slider( "values", 1 ) +"%");
+            } ));
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 </head>
 <body>
 
@@ -88,6 +128,10 @@
         </div>
         <div class="col pl-1 pr-1">
             <label id="alkgehalt_label" for="alkoholgehalt">Alkoholgehalt</label>
+
+            <input type="text" id="alcoholContent" name="alcoholContent" readonly style="border:0; font-weight:bold;">
+
+            <div class="slider-range"></div>
         </div>
     </div>
     <div class="row filter_opt pl-0 pr-0" id="filter_row">

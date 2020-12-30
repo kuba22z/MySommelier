@@ -63,16 +63,16 @@ class DrinkController extends Controller
         $origin = $req->request->get("herkunft_input");
         $substances= $req->get('inhaltsstoffe_input');
         $allergen =$req->request->get("keineAllergene");
+        $alk=explode("-",str_replace(["%"," "],"",$req->request->get('alcoholContent')));
 
-
-        $alk1 = $req->request->get("alkoholgehalt1");
-        $alk2 = $req->request->get("alkoholgehalt2");
+        $alk_low = $alk[0];
+        $alk_high = $alk[1];
 
         $where_clausel = [
             ['drinks.name', 'LIKE', "%{$name}%"],
             ['origin', 'LIKE', "%{$origin}%"],
-         //   ['alcoholContent', '>=', $alk1],
-         //   ['alcoholContent', '<=', $alk2]
+            ['alcoholContent', '>=', $alk_low],
+           ['alcoholContent', '<=', $alk_high]
             //[] <-- Muss noch nach Bewertung gefiltert werden
         ];
             if($product !== "all"){
@@ -92,7 +92,6 @@ class DrinkController extends Controller
                 $allergen = true;
 
                 $drinks = Drink::getDrinkByWhereClauselWithSubstances($where_clausel,$substances,$allergen);
-
 
         return view('home.home', ['drinks' => $drinks,
                                         'allergen' => $allergen,
