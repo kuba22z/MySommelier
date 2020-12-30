@@ -48,7 +48,6 @@ class Account extends Controller
             'secondName' => [
                 // Zahlen und Sonder Zeichen wie (,) sind nicht erlaubt sind
                 'nullable', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ ,.'-]+$)/i"],
-
             'email' => 'nullable |email | string | max:100',
             'birthDate' => 'nullable| date | max:40',
         ];

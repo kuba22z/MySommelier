@@ -44,14 +44,15 @@
     <div class="col-md-7 g" id="type">
         <label for="type">Art</label>
         <select name="type" id="type">
+            <option value="Mischbier">Mischbier</option>
             <option value="Pils">Pils</option>
-            <option value="Vollbier">Vollbier</option>
+            <option value="Weizen">Weizen</option>
             <option value="Weissbier">Weissbier</option>
-            <option value="Weizen">Wieizen</option>
-            <option value="Riesling">Riesling</option>
+            <option value="Dunkelbier">Dunkelbier</option>
             <option value="Weisswein">Weisswein</option>
             <option value="Rotwein">Rotwein</option>
             <option value="Glühwein">Glühwein</option>
+            <option value="Rose">Rose</option>
         </select>
     </div>
 

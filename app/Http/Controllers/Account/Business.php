@@ -100,7 +100,7 @@ class Business extends Controller
             }), 'nullable', 'digits_between:4,5'],
 
             'website' => 'url | nullable',
-            'openHours' => ['nullable', 'regex:(^((Mo|Di|Mi|Do|Fr|Sa|So)(-(Mo|Di|Mi|Do|Fr|Sa|So)){0,1}:[0-2]\d:[0-5]\d-[0-2]\d:[0-5]\d;){1,7}$)'],
+            'openHours' => ['nullable', 'regex:(^((Mo|Di|Mi|Do|Fr|Sa|So)(-(Mo|Di|Mi|Do|Fr|Sa|So)){0,1}:(([0-2]\d:[0-5]\d-[0-2]\d:[0-5]\d)|geschlossen);){1,7}$)'],
             'telNr' => ['nullable', 'regex:(^\+?\d{6,14}$)'],
             'description' => 'string | max:500 | nullable',
             'image' => 'image | file | nullable'
@@ -118,9 +118,10 @@ class Business extends Controller
         $trueDrinkids = [];
 
         //if checkbox was unchecked -> req->get(NumberOfThisCheckBox) will be empty else the nummber of the drink_id
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0, $j=0; $i < $count && $j<3; $i++) {
             if (!empty($req->get($i))) {
                 $trueDrinkids[] = $req->get($i);
+                $j++; //damit maximal nur drei Getränke als empfohlen gesetzt werden können
             }
         }
         DrinksOffer::updateRecommended(Auth::id(), $trueDrinkids);
