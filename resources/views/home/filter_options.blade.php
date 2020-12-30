@@ -30,16 +30,6 @@
         #alkgehalt_label{
             display: block;
         }
-
-        #alkoholgehalt1 {
-            margin-right:-1.5px;
-            width:50%;
-        }
-
-        #alkoholgehalt2 {
-            width:50%;
-        }
-
         .star_filter {
             padding-right:10px;
         }
@@ -50,12 +40,13 @@
         }
         .slider-range{
 margin-left: 10px;
-
         }
         #alcoholContent{
             position: relative;
             left: 20px;
             width: 130px;
+            margin-top: 1px;
+            margin-bottom: 2px;
         }
     </style>
 
@@ -92,9 +83,6 @@ margin-left: 10px;
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 </head>
 <body>
-
-
-
     <!-- https://www.w3schools.com/tags/tag_label.asp -->
     <div class="row filter_opt pl-0 pr-0" id="filter_row">
         <div class="col pl-1 pr-1">
@@ -127,7 +115,7 @@ margin-left: 10px;
             <input type="text" id="herkunft_input" name="herkunft_input" class="form-control mt-1" placeholder="Deutschland">
         </div>
         <div class="col pl-1 pr-1">
-            <label id="alkgehalt_label" for="alkoholgehalt">Alkoholgehalt</label>
+            <label id="alkgehalt_label" for="alcoholContent">Alkoholgehalt</label>
 
             <input type="text" id="alcoholContent" name="alcoholContent" readonly style="border:0; font-weight:bold;">
 
