@@ -19,6 +19,9 @@
         .filter_opt select {
             width:100%;
         }
+        #inhaltsstoffe_input{
+            width: 200px;
+        }
 
         label {
             line-height: 0px;
