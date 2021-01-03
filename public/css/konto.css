@@ -1,0 +1,81 @@
+.subTitle {
+    text-align: left;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+#formKonto .form-group {
+    text-align: right;
+}
+
+#formKonto .col-form-label {
+    width: 100%;
+}
+
+#formKonto button, #formKonto a {
+    width: 100%;
+}
+#formKonto button:hover, #formKonto a:hover {
+    color: white;
+}
+
+#noRatings {
+    text-align: center;
+}
+
+.ratingRow {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+.ratingRow > img{
+    /* padding-top: 100%; */
+    width: 100%;
+}
+
+.ratingDescription {
+    overflow-wrap: break-word;
+    font-size: .75em;
+}
+
+.ratingStars > span {
+    float: right;
+}
+
+.ratingName {
+    text-decoration: black underline;
+}
+
+.ratingName > a {
+    color: black;
+}
+
+.ratingName > a:visited {
+    color: black;
+}
+
+#ratingsHeading {
+    border-width: 1px 0px;
+}
+
+#changePWModal .modal-footer {
+    justify-content: center !important;
+}
+
+.allModals .modal-dialog {
+    margin-top: 6rem;
+}
+
+#savePWModal .container-fluid {
+    text-align: center;
+}
+
+#savePWModal .success {
+    color: var(--main-success-color);
+}
+
+#savePWModal .error {
+    color: var(--main-error-color);
+}

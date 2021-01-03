@@ -1,0 +1,16 @@
+.navBtn {
+    background-color: var(--main-mint-color);
+    color: var(--main-mint-color);
+    border: none;
+}
+#dropdown{
+    color: var(--main-mint-color);
+}
+#dropdownMenu2{
+    background-color: var(--main-mint-color);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+    border-color:  var(--main-mint-color);
+}
+nav {
+    background-color: var(--main-mint-color);
+}

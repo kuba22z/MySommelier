@@ -1,0 +1,22 @@
+h1 {
+    margin-left: auto;
+}
+/*
+.labelInput {
+    float: left;
+    position: relative;
+
+}
+*/
+
+#formBusiness .form-group {
+    text-align: right;
+}
+
+#businessProfilePictureContainer {
+    overflow-x: scroll;
+}
+
+#businessProfilePicture {
+    width: calc(100% - 2px - .25rem);
+}

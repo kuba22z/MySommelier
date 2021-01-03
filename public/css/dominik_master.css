@@ -1,0 +1,18 @@
+:root {
+    --main-mint-color: #00b5ad;
+    --main-success-color: #23c429;
+    --main-error-color: #c22621;
+}
+
+.subpageHeadline {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+}
+
+.mintButton {
+    color: white;
+    background: var(--main-mint-color);
+    border-color: var(--main-mint-color);
+}

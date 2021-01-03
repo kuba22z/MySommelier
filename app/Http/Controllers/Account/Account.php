@@ -64,18 +64,21 @@ class Account extends Controller
         $newPassword2 = $req->get('password_confirm');
         $actualPassword = $req->get('actualPsw');
 
-
         if (Hash::check($actualPassword, $provider->getAuthPassword()) && $newPassword === $newPassword2 && $newPassword !== $actualPassword) {
 
             $changes = ['password' => Hash::make($newPassword)];
 
             $provider->update($changes);
             $req->session()->flash('successful', true);
-            return redirect()->back();
+            //return redirect()->back();
 
         } else {
             $req->session()->flash('successful', false);
-            return redirect()->back();
+            //return redirect()->back();
         }
+        if (Auth::guard("client")->check())
+            return view('client.changePswC');
+        else
+            return view('provider.changePswP');
     }
 }
