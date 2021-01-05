@@ -10,16 +10,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-                @for($i=0;$i<5;$i++)
-                    <br>
-                @endfor
-                <div>Die EAN Scan Funktion erscheint erst in einer späteren Version. </div>
-                    @for($i=0;$i<10;$i++)
-                        <br>
-                    @endfor
+                <div>Die EAN Scan Funktion erscheint erst in einer späteren Version.</div>
             </div>
         </div>
     </div>
 </div>
-
-

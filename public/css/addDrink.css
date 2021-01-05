@@ -1,0 +1,39 @@
+#searchForm select, #searchForm button, #searchForm a {
+    width: 100%;
+}
+
+.drinkRow {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+.drinkRow > img{
+    /* padding-top: 100%; */
+    width: 100%;
+}
+
+.drinkDesc {
+    overflow-wrap: break-word;
+    font-size: .75em;
+}
+
+.drinkName {
+    text-decoration: black underline;
+}
+
+.drinkName > a {
+    color: black;
+}
+
+.drinkName > a:visited {
+    color: black;
+}
+
+.addButton {
+    background: transparent;
+    border: none;
+}
+#buttonContainer {
+    text-align: center;
+}

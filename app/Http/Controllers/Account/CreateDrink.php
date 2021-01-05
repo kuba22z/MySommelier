@@ -139,6 +139,6 @@ class CreateDrink extends Controller
         } else
             return redirect()->back()->withErrors(['csv' => "The csv format is invalid."]);
 
-        return redirect()->back();
+        return view('provider.business', ['openSearch' => true]);
     }
 }

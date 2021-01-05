@@ -15,11 +15,13 @@ class AddDrink extends Controller
         $drink_id = $req->get('id');
         //wenn es einen duplikat gibt wird die Exception gefangen und
         // ignoriert ohne etwas in der Datenbank zu verändern
+        $changed = true;
         try {
             DrinksOffer::insertOffer($drink_id, Auth::id());
         } catch (\Exception $e) {
+            $changed = false;
         }
-        return redirect()->route('business_view');
+        return view('provider.business', ['drinkAdded' => $changed]);
     }
     public function create(Request $req){
 

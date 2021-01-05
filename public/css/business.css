@@ -20,3 +20,79 @@ h1 {
 #businessProfilePicture {
     width: calc(100% - 2px - .25rem);
 }
+
+#offersContainer {
+    border: 1px solid black;
+}
+
+.offerRow {
+    border-bottom: 1px solid black;
+}
+
+.offerSettings > * {
+    float: right;
+}
+
+.offerSettings .form-check-inline {
+    margin: 0px;
+}
+
+.offerRow button {
+    color: var(--main-error-color);
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#modalButtonContainer {
+    text-align: center;
+}
+
+#formButtonsContainer button, #formButtonsContainer a {
+    width: 100%;
+}
+
+#suchenModal h5 {
+    text-align: center;
+}
+
+#suchenModal hr {
+    margin-left: -1rem;
+    width: calc(100% + 2rem);
+}
+
+#suchenModal label {
+    width: 100%;
+}
+
+#suchenModal #upload {
+    width: 100%;
+}
+
+#csv {
+    width: 100%;
+}
+
+#searchDrinkByNameForm a, #searchDrinkByNameForm button {
+    width: 100%;
+}
+
+#EANscanModal {
+    text-align: center;
+}
+
+#EANscanModal .modal-body {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+#addedModal {
+    text-align: center;
+    color: var(--main-success-color);
+}
+
+#addedModal .modal-body {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}

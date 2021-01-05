@@ -18,7 +18,7 @@ class Business extends Controller
 
         if (!empty($req->get('removeIt'))) {
             DrinksOffer::removeOffer(Auth::id(), $req->get('removeIt'));
-            return redirect()->back();
+            return view('provider.business');
         }
         $this->updateRecommendedOffer($req);
 

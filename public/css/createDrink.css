@@ -1,0 +1,24 @@
+.g, #product, #type{
+
+    width: 400px;
+}
+
+#heading {
+    text-align: center;
+}
+
+#drinkForm .form-group {
+    text-align: right;
+}
+
+#drinkPictureContainer {
+    overflow-x: scroll;
+}
+
+#businessProfilePicture {
+    width: calc(100% - 2px - .25rem);
+}
+
+#formButtonContainer {
+    text-align: center;
+}

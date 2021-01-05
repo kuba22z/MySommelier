@@ -71,7 +71,7 @@
 
     <h3 class="subTitle p-1" id="ratingsHeading">Meine Bewertungen</h3>
     <div class="overflow-auto" id="bewertungenContainer">
-        @php $ratings = []; @endphp
+        @php $ratings = [['imageSrc' => '', 'type' => 1, 'name' => 'GeiloLaden', 'stars' => 4, 'text' => 'Cooler Laden']]; @endphp
         @forelse($ratings as $b)
             @if ($b['imageSrc'] == '')
                 @php $b['imageSrc'] = 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Procyon_lotor_qtl2.jpg'; @endphp
