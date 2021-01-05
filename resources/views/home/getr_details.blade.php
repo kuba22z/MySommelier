@@ -52,7 +52,7 @@
         <div class="col">
         <!--{{$bew_hinterkomma = $_GET['bew']-intval($_GET['bew'])}}-->
             <p class="dis">
-                <strong><p class="getr_name">{{$_GET['info']}}</p></strong>
+            <p class="getr_name">  <strong>{{$drink->name}}</strong></p>
             <p class="bew_zahl">{{$_GET['bew']}}</p>
             @for($i = intval($_GET['bew']); $i >= 1; $i--)
                 <img class="star" src="https://img.icons8.com/material-rounded/8/000000/star.png"/>
@@ -70,8 +70,7 @@
             <br>
 
 
-
-            ▼ {{$drink->origin}}<br>
+            <img class="img-fluid" src="{{ url('img/marker.svg') }}" width="17px">{{$drink->origin}}<br>
             🍺 {{$drink->type}}<br>
             <strong>%</strong> {{$drink->alcoholContent}}% Vol.
             </p>

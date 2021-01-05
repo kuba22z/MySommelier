@@ -1,0 +1,62 @@
+#topInfoContainer {
+    border-bottom: 1px solid black;
+}
+
+#infosContainer a, #infosContainer a:visited {
+    text-decoration: underline;
+    color: black;
+}
+
+#fbButton {
+    margin-left: 10%;
+    width: 80%;
+}
+
+#fbButton a {
+    text-decoration: none;
+}
+
+#fbButton a:visited {
+    text-decoration: none;
+}
+
+#bImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.textBox {
+    border-bottom: 1px solid black;
+}
+/* ==================================================================== */
+.drinkRow {
+    border-bottom: 1px solid black;
+}
+
+.drinkRow > img{
+    /* padding-top: 100%; */
+    width: 100%;
+}
+
+.drinkName {
+    color: black;
+    text-decoration: black underline;
+}
+
+#getCardButton {
+    width: 100%;
+}
+
+.ratingRow {
+    border-bottom: 1px solid black;
+}
+
+.date {
+    font-size: .75em;
+}
+
+#bew {
+    border-top: 1px solid black;
+}

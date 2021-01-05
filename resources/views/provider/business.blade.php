@@ -13,7 +13,7 @@
             @endif
         @endisset
         @isset($openSearch)
-                openSearch = true;
+            openSearch = true;
         @endisset
     </script>
 @endpush
@@ -138,9 +138,9 @@
 
                         </div>
                     </div>
-                @endforeach
+            @endforeach
 
-                <!-- Button trigger modal -->
+            <!-- Button trigger modal -->
                 <div id="modalButtonContainer" class="py-4">
                     <a data-toggle="modal" data-target="#suchenModal" onclick="history.pushState({}, null, '/Anbieter/Geschaeft/Getraenk/suchen')">
                         <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -28,8 +28,10 @@
         <form method="POST" action="{{route('addDrink')}}">
             @csrf
             @foreach($row as $element)
-                <div class="drinkRow row mb-2 py-2 px-4">
-                    <img class="col-3 img-fluid" src="{{asset($element->image)}}" alt="Bild des Getränks">
+                <div class="drinkRow form-row mb-2 mx-0 py-2">
+                    <div class="col-3">
+                        <img class="img-fluid" src="{{asset($element->image)}}" alt="Bild des Getränks">
+                    </div>
                     <div class="col-6">
                         <div class="drinkName">
                             <a href="{{url('')}}?info={{$element->name}}&bew=4.6&id={{$element->id}}">{{$element->name}}</a>

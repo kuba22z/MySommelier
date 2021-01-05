@@ -19,11 +19,7 @@
     }
 </style>
 
-<?php $anbieter_arr=array("Zuhause"=>"250m entfernt",
-    "Würgeengel"=>"250m",
-    "PapperlaPub "=>"950m",
-    "Hell Club"=>"3,5km",
-    "Apollo Kino & Bar"=>"600m"
+<?php $distance=array("5","3,5","4","2","6","5,7","8","5,2","3,2","4,5","7,8","5,3","5,1"
 );
 ?>
 @if($noProvider!==true)
@@ -45,7 +41,8 @@
             </div>
             <div class="col-5">
                 <h6><u><a href="{{route('callBusiness_view',$provider->id)}}" class=" text-dark">{{ $provider->businessName }}</a></u></h6>
-                <p class="text-muted">{{"▼  entfernt"}}</p>
+
+                <img class="img-fluid" src="{{ url('img/marker.svg') }}" width="17px">{{$distance[$loop->index]."km"}} entfernt
             </div>
             <div class="col-3.5">
                 <p class="text-muted">

@@ -69,36 +69,7 @@
         </form>
     </div>
 
-    <h3 class="subTitle p-1" id="ratingsHeading">Meine Bewertungen</h3>
-    <div class="overflow-auto" id="bewertungenContainer">
-        @php $ratings = [['imageSrc' => '', 'type' => 1, 'name' => 'GeiloLaden', 'stars' => 4, 'text' => 'Cooler Laden']]; @endphp
-        @forelse($ratings as $b)
-            @if ($b['imageSrc'] == '')
-                @php $b['imageSrc'] = 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Procyon_lotor_qtl2.jpg'; @endphp
-            @endif
-            @if ($b['type'] == 1)
-                @php $link = '/Geschefte/' . $b['name']; @endphp
-            @else
-                @php $link = '/Getraenke/' . $b['name']; @endphp
-            @endif
-            <div class="row ratingRow mb-2 pb-1 px-4">
-                <img class="col-3 img-fluid" src="{{ $b['imageSrc'] }}">
-                <div class="col-9 row">
-                    <div class="col-6 ratingName">
-                        <a href="{{ $link }}">{{ $b['name'] }}</a>
-                    </div>
-                    <div class="col-6 ratingStars">
-                        <span>{{ $b['stars'] }} Sterne</span>
-                    </div>
-                    <div class="col-12 ratingDescription">
-                        {{ $b['text'] }}
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div id="noRatings">Keine Bewertungen</div>
-        @endforelse
-    </div>
+    @include('konto_bewertungen')
     <div class="allModals">
         <div class="modal fade" id="changePWModal" tabindex="-1" role="dialog" aria-labelledby="changePWModal" aria-hidden="true">
             <div class="modal-dialog" role="document">

@@ -4,7 +4,7 @@
     <script>
         //wenn man das popup versteckt ändert sich die URL ohne die Seite neuzuladen
         $('#suchenModal').on('hide.bs.modal', function (e) {
-            history.back();
+            history.pushState({}, null, '/Anbieter/Geschaeft/einrichten');
         });
     </script>
 

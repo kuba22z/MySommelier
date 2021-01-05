@@ -59,7 +59,7 @@ class Business extends Controller
         //  $provider=Provider::find(Auth::id());
 
         $provider->update($changes);
-        return redirect()->back();
+        return view('provider.business');
     }
 
     public function check(Request $req)
