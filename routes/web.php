@@ -83,9 +83,11 @@ Route::group(['middleware' => ['auth:client']], function () {  //redirection -> 
 
     Route::post('/Kunde/Konto/Passwort/aendern', [Account::class, 'changePsw'])->name('client_changePsw');
 
+
 });
 
-
+Route::group(['middleware' => ['noProvider']], function () {  //redirection ->business view / in Middleware RedirectIfProvider
+    //******* Here only Routes not for Providers   ***********
 Route::get('/Geschaeft/{id}', [CallBusiness::class, 'index'])->name('callBusiness_view');
 
 
@@ -94,6 +96,6 @@ Route::view('/', 'home.home');
 Route::get('/', [DrinkController::class, 'getDrinkToName'])->name('drink_view');
 Route::post('/', [DrinkController::class, 'searchButton'])->name('search_in_home');
 
-
+});
 
 

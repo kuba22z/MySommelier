@@ -87,7 +87,7 @@
                         <label for="openHoursInputInput" class="labelInput col-form-label">Öffnungszeiten:</label>
                     </div>
                     <div class="col-7">
-                        <input type="text" class="form-control" id="openHoursInputInput" name="openHours" placeholder="Zb: Mo:08:00-17:00;Di:08:00-19:30;">
+                        <input type="text" class="form-control" id="openHoursInputInput" name="openHours" placeholder="Zb: Mo:08:00-17:00;">
                     </div>
                     <span style="color: red">@error('openHours'){{$message}}@enderror</span>
                 </div>

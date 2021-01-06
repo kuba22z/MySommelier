@@ -43,7 +43,9 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class],
         'guests' => [\App\Http\Middleware\RedirectIfAuth::class],
-    ];
+
+        'noProvider' => [\App\Http\Middleware\RedirectIfProvider::class]
+        ];
 
     /**
      * The application's route middleware.
