@@ -11,6 +11,10 @@
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
     border-color:  var(--main-mint-color);
 }
-nav {
+nav{
     background-color: var(--main-mint-color);
+}
+.btn{
+    background-color: #00b5ad;
+border-color: #00b5ad;
 }

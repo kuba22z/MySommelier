@@ -16,9 +16,9 @@
 
             <!-- dropdown menu options -->
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <a href="@auth('provider'){{route('provider_account_view')}} @elseauth('client') {{route('client_account_view')}} @endauth" class="dropdown-item" role="button">Mein Konto</a>
+                <a href="@auth('provider'){{route('provider_account_view')}} @elseauth('client') {{route('client_account_view')}} @endauth"  class="dropdown-item" role="button">Mein Konto</a>
                 <div class="dropdown-divider"></div>
-                <a href="{{route('logout')}}" class="dropdown-item" role="button">Abmelden</a>
+                <a href="{{route('logout')}}" class="dropdown-item" id="abmelden" role="button">Abmelden</a>
             </div>
         </div>
         </div>

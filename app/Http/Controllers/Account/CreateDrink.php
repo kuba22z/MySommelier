@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Drink;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,14 +15,12 @@ class CreateDrink extends Controller
 {
     public function create(Request $req)
     {
-
-        $this->check($req);
-
+            $this->check($req);
 
         //saves the file/image in laravel storage folder and returns
         // /providersImage/{name of this file} as path
-
         $imagePath = null;
+
         if (!empty($req->file('drinkImage'))) {
             if ($req->get('product') === 'Wein')
                 $image_path = $req->file('drinkImage')->store('public/drinksImage/wine');
@@ -43,9 +42,8 @@ class CreateDrink extends Controller
         ]);
 
 
-        Drink::createDrink($this->formatSubstances($req->get('substances')), $req);
-
-
+        if (Drink::createDrink($this->formatSubstances($req->get('substances')), $req) === false)
+            File::delete($imagePath);
         return redirect()->route('search_drink');
     }
 
@@ -56,7 +54,7 @@ class CreateDrink extends Controller
         ];
         $rules = [
             // Zahlen und Sonder Zeichen wie ( ) sind nicht erlaubt sind
-            'name' => ['required', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ ,.'-]+$)/i"],
+            'name' => ['required', 'string', ' max:40 ', "regex:/(^[a-zäöüßÖÄÜ +,.'-]+$)/i"],
 
             // ean can have only 8 or 13 numbers
             'ean' => ['required', 'numeric', 'regex:(^(\d{8}|\d{13})$)'],
@@ -113,7 +111,7 @@ class CreateDrink extends Controller
         foreach ($csv as $row)
             $table [] = explode(';', $row);
 
-        $substances=[];
+        $substances = [];
 
         //Format substances in a seperate array
         foreach ($table as $key => $record) {
@@ -130,10 +128,10 @@ class CreateDrink extends Controller
         }
 
         if ($table !== []) {
-         $i=0;
+            $i = 0;
             foreach ($table as $key => $record) {
 
-               Drink::createDrinkSeeder($substances[$i], $record);
+                Drink::createDrinkSeeder($substances[$i], $record);
                 $i++;
             }
         } else
@@ -141,4 +139,6 @@ class CreateDrink extends Controller
 
         return view('provider.business', ['openSearch' => true]);
     }
+
+
 }

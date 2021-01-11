@@ -70,9 +70,8 @@
 
 @guest
     <!-- Button trigger modal -->
-        <a data-toggle="modal" data-target="#loginModal">
-            <img
-                src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.stickpng.com%2Fassets%2Fimages%2F585e4beacb11b227491c3399.png&f=1&nofb=1"
+        <a data-toggle="modal" id="loginBtn" data-target="#loginModal">
+            <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.stickpng.com%2Fassets%2Fimages%2F585e4beacb11b227491c3399.png&f=1&nofb=1"
                 width="50" height="50" class="d-inline-block align-top" alt="">
         </a>
     @endguest
@@ -94,7 +93,7 @@
                        @auth('provider'){{route('provider_account_view')}} @elseauth('client') {{route('client_account_view')}} @endauth
                            class="dropdown-item" role="button">Mein Konto</a>
                     <div class="dropdown-divider"></div>
-                    <a href={{route('logout')}} class="dropdown-item" role="button">Abmelden</a>
+                    <a href={{route('logout')}} class="dropdown-item" id="abmelden" role="button">Abmelden</a>
 
             </div>
 

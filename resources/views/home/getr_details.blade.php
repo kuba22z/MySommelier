@@ -44,7 +44,7 @@
 @foreach($drinks as $drink)
     <div class="row details">
         <div class="col">
-            <img src="{{$drink->image}}" width=150 height=150>
+            <img src="{{$drink->image}}" onerror=this.src="{{asset('storage/default.png')}}" width=150 height=150>
 
             <!--<div class="fb-share-button" id="share_fb" data-href="https://cybersommelier.de" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcybersommelier.de%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>-->
             <button type="button" onclick="var win = window.open('https://de-de.facebook.com/', '_blank'); win.focus();" name="share_fb" id="share_fb" class="btn btn-outline-dark"><img src="{{asset('storage/facebook.png')}}"><p> Share</p></button>

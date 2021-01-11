@@ -26,6 +26,9 @@
     "Abita Light" => "Mischbier l 2,5 Vol.");
 ?>
 
+@php  $drinksEmpty=true;         @endphp
+
+@if($drinks->isNotEmpty())
 @foreach($drinks as $drink)
 
 
@@ -91,4 +94,20 @@
         </div>
     </div>
 
-@endforeach
+     @if(!empty($drink))
+    @php   $drinksEmpty=false; @endphp
+    @endif
+    @endforeach
+@endif
+
+@if( $drinksEmpty==true )
+    <div class="row">
+        <div class="col">
+            <br>
+            <br>
+            <strong><h4 id="welcome_text" class="toggle_text_on_filter" >
+                    Keine Getränke gefunden</h4></strong>
+        </div>
+    </div>
+
+@endif

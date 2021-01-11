@@ -79,7 +79,7 @@
                     @endif
                     <br><br><br>
                     <button type="submit" class="btn btn-primary" id="anmelden">Anmelden</button>
-                    <div class="register"><a onclick="
+                    <div class="register"><a id="newAccountBtn" onclick="
                     $('#loginModal').modal('hide')
                     $('#registerModal').modal('show')" style="color: #00b5ad">Neues Konto erstellen</a></div>
 

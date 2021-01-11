@@ -55,18 +55,14 @@ class ProviderRoutesTest extends TestCase
         $this->post('/login')->assertStatus(302);
         $this->get('/login')->assertStatus(302);
         $this->post('/registration')->assertStatus(302);
-    }
-
-    public function testOtherRoutes()
-    {
-        $this->provider = Provider::factory()->create();
-        $this->actingAs($this->provider, 'provider')->withSession(['banned' => false]);
 
         $this->get('/logout')->assertStatus(302);
-        $this->get('/Geschaeft/1')->assertStatus(200);
-        $this->get('/')->assertStatus(200);
-        $this->post('/')->assertStatus(200);
+        $this->get('/Geschaeft/1')->assertStatus(302);
+        $this->get('/')->assertStatus(302);
+        $this->post('/')->assertStatus(302);
+
     }
+
 }
 
 

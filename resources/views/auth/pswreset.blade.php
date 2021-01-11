@@ -30,7 +30,7 @@
             <div class="modal-body"><br><br>
 
                 <div>Um Ihr Passwort zurückzusetzen, senden Sie eine Email an</div>
-                <div class="email"><a href="support@cyber-sommelier.de">support@cyber-sommelier.de</a></div>
+                <div class="email"><a href="mailto:support@cyber-sommelier.de">support@cyber-sommelier.de</a></div>
                 @for($i=0;$i<12;$i++)
                     <br>
                 @endfor

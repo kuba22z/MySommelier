@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CaptchaSeeder::class,
             DrinkSeeder::class,
-            ProviderSeeder::class
+            ProviderSeeder::class,
+            ClientSeeder::class
         ]);
     }
 }

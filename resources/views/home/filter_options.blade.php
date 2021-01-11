@@ -92,8 +92,8 @@ margin-left: 10px;
             <label for="prod_select">Produkte</label>
             <select name="prod_select" id="prod_select">
                 <option value="all">Alle</option>
-                <option value="Bier">Bier</option>
-                <option value="Wein">Wein</option>
+                <option value="Bier" >Bier</option>
+                <option value="Wein" id="wein">Wein</option>
             </select>
         </div>
         <div class="col pl-1 pr-1">
@@ -101,12 +101,12 @@ margin-left: 10px;
             <select name="art_select" id="art_select">
                 <option value="all">Alle</option>
                 <option value="Mischbier">Mischbier</option>
-                <option value="Pils">Pils</option>
+                <option value="Pils" id="pils">Pils</option>
                 <option value="Weizen">Weizen</option>
                 <option value="Weissbier">Weissbier</option>
                 <option value="Dunkelbier">Dunkelbier</option>
                 <option value="Weisswein">Weisswein</option>
-                <option value="Rotwein">Rotwein</option>
+                <option value="Rotwein" id="rotwein">Rotwein</option>
                 <option value="Glühwein">Glühwein</option>
                 <option value="Rose">Rose</option>
             </select>

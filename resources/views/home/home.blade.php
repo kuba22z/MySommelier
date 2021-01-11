@@ -107,11 +107,11 @@
 
             </div>
             <div class="col">
-                <button type="button" onclick="toggleVis()" name="filter_button" id="btn" class="btn btn-outline-dark ml-1 mt-1 toggleButton w-100">Filter</button>
+                <button type="button" onclick="toggleVis()" name="filter_button" id="filterBtn" class="btn btn-outline-dark ml-1 mt-1 toggleButton w-100">Filter</button>
             </div>
 
             <div class="col">
-                <button type="submit" name="search_button" id="btn" class="btn btn-outline-dark ml-1 mt-1 w-100">Suchen</button>
+                <button type="submit" name="search_button" id="suchenBtn" class="btn btn-outline-dark ml-1 mt-1 w-100">Suchen</button>
             </div>
 
         </div>
@@ -135,31 +135,26 @@
 
 
 </div>
-@if($drinks->isEmpty())
-    <div class="row">
-        <div class="col">
-            <br>
-            <br>
-            <strong><h4 id="welcome_text" class="toggle_text_on_filter" >
-                    Keine Getränke gefunden</h4></strong>
-        </div>
-    </div>
 
+
+
+
+
+
+
+@if(isset($_GET['info']) && $_GET['info'])
+    @include('home.anbieter_getr_liste')
+    @include('home.bewertung')
+@else
+    @include('home.getr_liste')
 @endif
+
+
 
 @include("auth.registration")
 @include("auth.pswreset")
 @include("auth.login")
 
-
-@if($drinks->isNotEmpty())
-@if(isset($_GET['info']) && $_GET['info'])
-    @include('home.anbieter_getr_liste')
-    @include('home.bewertung')
-@else
-    @include('home.getr_liste', $drinks)
-@endif
-@endif
 
 </body>
 </html>

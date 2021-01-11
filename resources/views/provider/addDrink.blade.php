@@ -30,7 +30,7 @@
             @foreach($row as $element)
                 <div class="drinkRow form-row mb-2 mx-0 py-2">
                     <div class="col-3">
-                        <img class="img-fluid" src="{{asset($element->image)}}" alt="Bild des Getränks">
+                        <img class="img-fluid" src="{{asset($element->image)}}" onerror=this.src="{{asset('storage/default.png')}}">
                     </div>
                     <div class="col-6">
                         <div class="drinkName">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-3">
                         <input type="hidden" name="name" hidden value="{{$element->name}}">
-                        <button class="addButton" type="submit" name="id" value="{{$element->id}}">
+                        <button class="addButton" id="addDrink" type="submit" name="id" value="{{$element->id}}">
                             <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -55,7 +55,7 @@
         </form>
     </div>
     <div id="buttonContainer" class="mt-4">
-        <a href="{{route('create_drink_view')}}">
+        <a href="{{route('create_drink_view')}}" id="createDrinkBtn">
             <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

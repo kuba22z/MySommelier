@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class Drink extends Model
 {
@@ -101,14 +102,14 @@ class Drink extends Model
         //he transaction will automatically be rolled back. If the
         // closure executes successfully, the transaction will automatically be committed
 
-        DB::transaction(function () use ($substancesA, $req) {
+       return DB::transaction(function () use ($substancesA, $req) {
 //create new drink if the name not exists
             try {
                 $drink = new Drink($req->except('_token', 'drinksImage', 'substances'));
                 $drink->save();
                 $drinkID = $drink->getAttribute('id');
             } catch (Exception $e) {
-                return;
+                return false;
             }
 
 //create new substances if the name not exists
@@ -176,6 +177,15 @@ class Drink extends Model
             }
         }, 40);
 
+    }
+    public static function getImagePathByEan(int $ean) :Collection{
+
+        return DB::table('drinks')->select('image')->where('EAN', '=', $ean)->get();
+    }
+
+    public static function deleteByEAN($ean){
+
+        DB::table('drinks')->where('EAN', '=', "$ean")->delete();
     }
 
 
