@@ -1,0 +1,366 @@
+PHP
+
+php artisan serve --host=192.168.178.31  
+
+php -S localhost:4000 	  		start a development Server localhost ->::which is 
+					running on a local Machine with port 4000 
+					listening on http://localhost:4000  
+
+
+
+php artisan                       	show lots of commands where you can interact with the 
+					entire laravel application command ->(inside of a laravel 						project/directory)
+		
+Laravel
+
+php artisan serve			to start a development server	  
+npm run dev				to compile thr fronted asset ->its important for fronted
+					development 
+					
+php artisan route:list 		zeigt alle routen die es gibt
+php artisan make:controller <Users> 	to create a new controller called Users
+php artisan make:component <NAME> 	to create a component	
+
+
+			Migration Commands
+php artisan migrate			with this command you create in your database all tables
+					which a defined in the migrations folder
+php artisan make:migration create_test_table  	to create a table for the migration 								(folder)
+php artisan migrate			to migrate all folders( create all tables which a defined)
+php artisan migrate:reset		to delete all migrations table in the folder 
+php artisan migrate:rollback --step 3
+php artisan migrate 	--path=/database/migrations/2020_09_21_141958_create_test5_table.php
+			to migrate a specific table /creates a specific table
+
+php artisan make:model Flight -m			
+			
+			
+php artisan migrate:refresh		to update the table if you changed the migration class 						before
+
+			Seeder commands
+
+php artisan make::seeder <SeederName>    create a seeder in the project in folder database
+php artisan db:seed --class=<MigrationClass>	To seed/add in Seed class defined data to the    							the table
+
+
+php artisan storage:link          	To create the symbolic link so you can use (new)links in 
+					storage folder. Have to executed every time if you add
+					a folder in storage		 
+
+
+Folder Structure
+
+where you have to wirte code if 
+you write a application        HTML
+				Model    	->in app(directory)
+				Controller  	->in app
+				Routing
+				File Store
+				Config
+				database
+				
+In App we wirte the Backend stuff
+APP:
+HTTP/Contoroller 	1.Is a central Unit of any MVC framework like Laravel
+			Controller fetch the data form the model(database) and send it to the 
+			view(html part) -> it is the Interface between database and HTML
+			2.All logical part are done in the controller
+			3.All routers are directly linked with the controller
+
+HTTP/Middleware 	Middleware is a piece of code that can filter out user request
+			for example login: if user is logged in then he can access more pages
+			In this case middleware is very helpful. Middleware make a condition 
+			for a user that he can access only one page and it will just make a
+	 		restriction on the 99 pages and we dont need to write the code for the 
+			all 99	pages we can just write the code on a single file and it 
+			will apply automatically on the old pages      
+			->so there you can determine the access rights for each user	
+			
+			Middleware has three types:
+			global Middleware is apply on all websites
+			routed Middleware is apply a middleware on 
+				a single/specific route at a time
+			group Middleware is apply on specific websites
+			
+php artisan make:middleware <Name> 	to create a middleware
+			then you have to apply the middleware in Kernel.php as global or other 
+			type
+			 
+/Kernel 		all middleware are registered in the kernel
+
+/Models		here we put the files that are related to the database connection
+ 			like user. User.php will connect our database with the users table
+			Model is used to connect laravel to the Database 
+			
+			if your DB table is "users" then the Model Name have to called
+			"User" model name have to be capitalise			
+			In the Model you can define database structure
+			and Write Business Login
+			In laravel each database table should have a corrsponding Modelclass
+			
+/Provides		Here we write the authentication services(not used by Beginners) 	
+			Or RouteSrviceProvider or other Services
+
+Bootstrap: 		
+app.php		Load our application in the Browser(Make no changes in this file)
+
+/cache			This files provides the cache. The cache of our site will automatically
+			fill up here
+
+config:		Here we can make our configurations
+			For example database config or email config
+			
+Database:
+/migrations 		to migrate the table from one database to another database when we
+			are using the database by many developers
+			
+			With the Migration you can generate the database table dynamically with 				the laravel code. You dont have to do this manually 
+			
+			The Benefit of this when more people working on the same database and 			they dont use migration then they will work on seperate Database
+			and with migration they will work on the same database
+
+
+
+Seeding is adding data to the database through the command line is like add data to to the 
+migrations
+
+
+Accessor is used to modify the record(datensatz) before we display it. So it doesent modify the 
+data in the database but only on the display -> you can define the accessor methods in the model
+
+Mutator: sometimes you have to update your data before saving it in the database
+	for this purpose is Mutator usefull
+
+Route Model Binding make it possible that we can inject our Model to the route so that we can fetch data with minimum of code
+
+
+API is Aplication Programming interface it is used to transfer data between two technologies
+In laravel we actully create APIs to the Database
+Json format(standart for the APIs) is understandable by all technologies
+When we create a API then it can be used to all foreign technologies  -> there is a standart
+
+Jetstream is a package of laravel which provides basic funcionality of your project
+It will automaitlcy generate the login, logout, authetication, api and so on and layout also
+
+commands to create a authentication
+
+laravel -v 
+        composer global remove laravel/installer
+        composer global require laravel/installer  -> for the update
+laravel new project-name --jet
+npm install
+npm run dev
+php artisan migrate 
+php artisan serve
+
+
+
+
+Public:		only one important file
+index.php 		First file which is load from our application 
+
+Rescources:		we put here the public files of css images Javascript and local file
+/view			here we put our complete html.
+			all html pages will be placed inside the view 
+			The view's file can be routing/called from router or called from a 				controller 
+					
+/routes		responsible for the making the routes between files
+
+/storage		used for storing the files(file for caching )  		
+
+tests:			here we wirte the unit cases 
+
+vendor:		has the dependency which is loaded by the package.json
+
+.env:	 		its defined our database credentials and all other credentials
+
+artisian: 		used for the command line			 
+ 
+composer.json: 	all configurations and all detail of our application
+ 		 	all dependencies and all packages are mentioned here(very important)
+
+package.json:   	when we use fronted framework or libary like react then this is usefull 
+
+phpunit.xml: 		helpful to write unit test cases
+
+README:		to decribe our project	
+
+server.php: 		useful to rewrite some functionality of the apache server or the other 
+			services
+			
+webpack.mix.js 	useful for the making the bundling of the public file 			only useful we are using fronted framework 
+
+All Sites that we can view(with HTML) is in the view directory 
+
+site.blade.php 	
+
+blade template is a template provided by laravel
+blade provided many functionality. 
+For example we dont have to use the php tags directly
+<? php ?>	->php
+{{}}		-> blade template but is not the same as <?php?> for example {{10+10}}-> echo 20
+
+
+
+
+
+1.
+To make change in the composer.json file:
+change in composer.json and then run "composer update" as command
+
+2.
+Hello sir, Yes we can change/rename the views directory but for accessign our custom view path we have to define in config/view.php file
+'paths' => [
+
+        resource_path('Your_view_Directory_Name'),
+
+    ],
+
+3.
+api.php allow us to build APIs, we can make GET/POST/DELETE/PUT/PATCH 
+to interact with other API or databases
+
+Routes/web.php is for web app URLs.
+Routes/api.php is for APIs URLs.
+
+
+4.the syntax for calling controller form the router is diffrent in laravel version 7 or 6
+Laravael changes the syntax because
+Laravel documentation said it allow us to "use the standard PHP callable syntax"
+
+
+5.
+Why we cannot use something like php artisan make:view Users
+This is because views are just a file and not a class
+
+ Yes we can check that view is available or not before using it.
+We can do this by using "exists" function of view helper. It will return true or false.
+Example :
+     if (view()->exists('users.index')) {
+
+       ....
+
+     }
+     
+Coponent is a piece of code that we can reuse it.
+We can reuse it on the same page as well as on the diffrent page
+its similar to functions but components are much advanced.
+functions has limited functionalities so for example
+In the component we can wirte the html,php and connect to database
+inside it.
+for exmaple you have sign up button in the website and you can make a component for it and
+reuse it
+component is the best approach when you want to use any functionality again
+
+6.
+In public folder u should store your css and js file...#
+
+7.
+Write the following code in input text control to stored old value which are previously submitted in textbox.
+value="{{ old('username') }}"
+for eg. 
+<input type="text" name="username" value="{{ old('username') }}"/>
+
+We use csrf token for  security purposes like..
+Laravel makes easy to protect your application from cross-site request forgery (csrf) attacks.......csrf token secure your application from attacker..
+ 
+8.
+Yes, we can use two Route or two middleware with the single group Route.
+
+9.
+Yes, we can use two middleware in a single Route.  exm: Route::view( 'home', 'home' ) ->
+middleware( 'protectedPage ' , 'safePage ' ); if i am worng please provide the correct answer.
+10.
+Answering your question: yes, it is possible to get info from a second table, just have to define the  relationship with the main table.
+
+We can include one or more table with in a model by defining method with foreign key.
+
+11.
+PUT Method is used to update the data
+Patch method is used for specific / partial data update.
+
+12.
+Sessions are used to store a data on server side
+
+->usefull to make a login or authentication
+and you can send the data form one page to another page
+for example you store a data in a session on login page and you can get this data 
+on the profile page or logout page 
+
+13.
+Flash Session like normal session but the data will automaticly deleted after one refresh   
+with this commands you can use flash session more often than one fresh
+$request->session->reflash ()
+Or
+//$request->session->keep()
+14.
+Pagination is when we have very much data in the database and we want to show it in the 
+chunks(Brocken)
+For example we have 1000 of data and on every page I want to show 100 data
+
+15.
+actually we should not use One model for two or more tables, each model is specified for that particular table, its unnecessary thing. each table has and should have its own Model.
+
+
+
+actually we should not use One model for two or more tables, each model is specified for that particular table, its unnecessary thing. each table has and should have its own Model.
+Fortify Biblithek nutzen um zb sich den Login zu generieren -> ist ein framework für fronted 
+
+https://github.com/laravel/fortify
+
+Ui benutzen um ein Login zu generieren
+
+composer require laravel/ui   
+php artisan ui vue --auth
+npm install && npm run dev
+
+			
+ create_clients_failed_jobs_table
+ create_clients_password_resets_table
+ create_clients_table
+
+
+create_providers_failed_jobs_table
+create_providers_password_resets_table
+create_providers_table
+
+php artisan serve --host=10.111.67.70  
+
+php artisan serve --host=192.168.178.31  
+
+
+   get uri(path) of the current Url ->  {{app()->make('router')->getCurrentRoute()->uri}}
+        
+ ------------------------------------------------------------------------------------------
+ Testen
+ 
+ Damit Dusk funktioniert müsste man außer der Instalierung die .env Datei verändern
+ 
+ Diese Zeile müsste man verändern:
+
+ APP_URL=http://127.0.0.1:8000
+        
+ -----------------------------------------------------------------------------------------       
+        
+        
+        
+        
+//  $row =Drink::all();   // nimmt alle Daten von der Tablle drink und speichert es in row
+//    $row =Drink::all('name');  // wie select name from drinks
+// Verschieden möglichkeiten um sich einen bestimmten namen aus der Datenbank zu holen
+//  return Drink::where('name', '=', $req->get('name'))->get();
+//return DB::table('drinks')->where('name', '=',$req->get('name'))->get();
+//$row=DB::table('drinks')->select('name','type','alcoholContent')->where('name','LIKE',$req->get('name'))->get();
+        
+        
+        
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+						
