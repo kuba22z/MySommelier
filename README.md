@@ -80,3 +80,4 @@ Momentan hat der Gast die gleichen Möglichkeiten wie der Kunde, da die Bewertun
 
 Der Anbieter hat ganz andere Zugriffsrechte als der Kunde oder der Gast 
 
+Develped By Jakub, Serdar and Dominik
